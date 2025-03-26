@@ -1,8 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Savage Garden
+
+Savage Garden is a plant monitoring system that connects with ESP32 devices to track plant health and environmental conditions. The system helps plant enthusiasts maintain optimal growing conditions while also tracking the positive environmental impact of their plants through carbon savings calculations.
+
+## Features
+
+- Track multiple plants with search functionality
+- Monitor sensor data (moisture, temperature, light, weight)
+- Calculate carbon savings and environmental impact
+- Responsive design for all device sizes
+
+## Tech Stack
+
+- Next.js 12 with TypeScript
+- Tailwind CSS for styling
+- Chart.js for data visualization
+- Context API for state management
+- API routes for backend functionality
+
+## Project Structure
+
+- **components/** - Reusable UI components
+  - **layout/** - Layout components like headers and footers
+  - **plants/** - Plant-specific components
+  - **ui/** - Generic UI components
+- **lib/** - Application logic
+  - **context/** - React Context providers
+  - **hooks/** - Custom hooks for data fetching
+- **pages/** - Next.js pages and API routes
+  - **api/** - API routes for data operations
+- **public/** - Static assets
+- **styles/** - Global styles
+- **types/** - TypeScript type definitions
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -12,11 +52,39 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## ESP32 Integration
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+The system is designed to connect with ESP32 devices that have sensors for:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Soil moisture
+- Temperature
+- Light intensity
+- Plant weight
+
+In a production environment, the ESP32 devices would send data to the API endpoints:
+
+- `POST /api/plants/{id}/sensor-data` - Update sensor data for a specific plant
+
+The current implementation uses mock data for demonstration purposes.
+
+## Carbon Savings Calculation
+
+The system calculates carbon savings based on plant data and provides metrics for:
+
+- Total CO₂ absorbed
+- Equivalent car miles not driven
+- Equivalent number of trees
+
+## Future Development
+
+- Automated watering systems integration
+- Machine learning for plant species recognition
+- Community features for plant care tips
+- Mobile app for on-the-go monitoring
+
+## License
+
+MIT
 
 ## Learn More
 
