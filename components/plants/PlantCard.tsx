@@ -4,26 +4,47 @@ import Image from 'next/image';
 import { format } from 'date-fns';
 import { Plant } from '../../types';
 
+// Constants for health calculation - shared with detail page
+const HEALTH_THRESHOLDS = {
+  EXCELLENT: 85,
+  GOOD: 70,
+  FAIR: 50,
+  NEEDS_ATTENTION: 30
+};
+
+// Calculate health score - can be moved to a shared utility file
+const calculateHealthScore = (plant: Plant): number => {
+  // This is a simplified example calculation - in a real app
+  // this would use real sensor data from the plant
+  return Math.min(100, Math.max(0, 70 + Math.floor(Math.random() * 30)));
+};
+
+// Get health status text based on score
+const getHealthStatus = (score: number): string => {
+  if (score >= HEALTH_THRESHOLDS.EXCELLENT) return 'Excellent';
+  if (score >= HEALTH_THRESHOLDS.GOOD) return 'Good';
+  if (score >= HEALTH_THRESHOLDS.FAIR) return 'Fair';
+  if (score >= HEALTH_THRESHOLDS.NEEDS_ATTENTION) return 'Needs Attention';
+  return 'Critical';
+};
+
+// Get CSS class for health status bar
+const getHealthBarClass = (score: number): string => {
+  if (score >= HEALTH_THRESHOLDS.GOOD) return 'bg-green-500';
+  if (score >= HEALTH_THRESHOLDS.FAIR) return 'bg-yellow-500';
+  return 'bg-red-500';
+};
+
 interface PlantCardProps {
   plant: Plant;
 }
 
 const PlantCard: FC<PlantCardProps> = ({ plant }) => {
-  // Calculate a simple health score between 0-100
-  const healthScore = Math.min(100, Math.max(0, 
-    // This is a simplified example calculation - in a real app
-    // this would use real sensor data
-    70 + Math.floor(Math.random() * 30)
-  ));
+  // Handle missing date
+  const safeDateAdded = plant.dateAdded ? new Date(plant.dateAdded) : new Date();
   
-  // Determine health status text based on score
-  const getHealthStatus = (score: number) => {
-    if (score >= 85) return 'Excellent';
-    if (score >= 70) return 'Good';
-    if (score >= 50) return 'Fair';
-    if (score >= 30) return 'Needs Attention';
-    return 'Critical';
-  };
+  // Calculate health score
+  const healthScore = calculateHealthScore(plant);
   
   return (
     <Link 
@@ -46,16 +67,13 @@ const PlantCard: FC<PlantCardProps> = ({ plant }) => {
           <p className="text-sm text-gray-500 mb-2">{plant.species}</p>
           
           <div className="flex justify-between text-xs text-gray-500 mb-3">
-            <span>Added: {format(new Date(plant.dateAdded), 'MMM d, yyyy')}</span>
+            <span>Added: {format(safeDateAdded, 'MMM d, yyyy')}</span>
           </div>
           
           <div className="flex items-center mt-2">
             <div className="w-full bg-gray-200 rounded-full h-2">
               <div 
-                className={`h-2 rounded-full ${
-                  healthScore >= 70 ? 'bg-green-500' : 
-                  healthScore >= 50 ? 'bg-yellow-500' : 'bg-red-500'
-                }`}
+                className={`h-2 rounded-full ${getHealthBarClass(healthScore)}`}
                 style={{ width: `${healthScore}%` }}
               ></div>
             </div>
