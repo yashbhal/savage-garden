@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { SensorData, SensorDataApiResponse } from '../../types';
+import { useState, useEffect, useCallback } from "react";
+import { SensorData, SensorDataApiResponse } from "../../types";
 
 interface UseSensorDataReturn {
   sensorData: SensorData | null;
@@ -13,7 +13,7 @@ export const useSensorData = (plantId: string | null): UseSensorDataReturn => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchSensorData = async () => {
+  const fetchSensorData = useCallback(async () => {
     if (!plantId) {
       setSensorData(null);
       return;
@@ -23,26 +23,28 @@ export const useSensorData = (plantId: string | null): UseSensorDataReturn => {
       setLoading(true);
       const response = await fetch(`/api/plants/${plantId}/sensor-data`);
       const data: SensorDataApiResponse = await response.json();
-      
+
       if (!data.success) {
-        throw new Error(data.error || 'Failed to fetch sensor data');
+        throw new Error(data.error || "Failed to fetch sensor data");
       }
 
       setSensorData(data.data || null);
       setError(null);
     } catch (err) {
-      console.error('Error fetching sensor data:', err);
-      setError(err instanceof Error ? err.message : 'An unknown error occurred');
+      console.error("Error fetching sensor data:", err);
+      setError(
+        err instanceof Error ? err.message : "An unknown error occurred"
+      );
     } finally {
       setLoading(false);
     }
-  };
+  }, [plantId]);
 
   useEffect(() => {
     if (plantId) {
       fetchSensorData();
     }
-  }, [plantId]);
+  }, [plantId, fetchSensorData]);
 
   return {
     sensorData,
@@ -50,4 +52,4 @@ export const useSensorData = (plantId: string | null): UseSensorDataReturn => {
     error,
     refreshData: fetchSensorData,
   };
-}; 
+};
