@@ -16,25 +16,26 @@ export interface Plant {
 export interface SensorReading {
   timestamp: string;
   moisture: number; // 0-100%
-  temperature: number; // celsius
-  light: number; // lux
-  weight: number; // grams
+  temperature: number; // Celsius
+  light: number; // Lux
+  weight: number; // Grams
 }
 
-// Sensor Data Interface (includes readings history)
+// Sensor Data Interface
 export interface SensorData {
-  sensorId: string;
-  plantId: string;
-  currentReading: SensorReading;
-  readings: SensorReading[];
+  sensorId: string; // Unique identifier for the sensor
+  plantId: string; // ID of the plant associated with this sensor
+  currentReading: SensorReading; // Current sensor reading
+  readings: SensorReading[]; // Historical readings
+  lastUpdated: string; // Timestamp of the last update
 }
 
 // Carbon Savings Interface
 export interface CarbonSavings {
-  totalCO2Absorbed: number; // grams
+  totalCO2Absorbed: number; // Grams
   equivalentCarMiles: number;
   treesEquivalent: number;
-  dailyRate: number; // grams per day
+  dailyRate: number; // Grams per day
 }
 
 // API Response Interfaces
@@ -44,7 +45,22 @@ export interface ApiResponse<T> {
   error?: string;
 }
 
-export interface PlantsApiResponse extends ApiResponse<Plant[]> {}
-export interface PlantApiResponse extends ApiResponse<Plant> {}
-export interface SensorDataApiResponse extends ApiResponse<SensorData> {}
-export interface CarbonSavingsApiResponse extends ApiResponse<CarbonSavings> {} 
+export interface PlantsApiResponse extends ApiResponse<Plant[]> {
+  totalCount?: number; // Optional property to indicate total number of plants
+}
+
+export interface PlantApiResponse extends ApiResponse<Plant> {
+  message?: string; // Optional message for additional context
+}
+
+export interface ReadingsApiResponse extends ApiResponse<SensorReading[]> {
+  lastUpdated?: string; // Optional property to indicate when the data was last updated
+}
+
+export interface SensorDataApiResponse extends ApiResponse<SensorData> {
+  lastUpdated?: string; // Optional property to indicate when the data was last updated
+}
+
+export interface CarbonSavingsApiResponse extends ApiResponse<CarbonSavings> {
+  calculationMethod?: string; // Optional property to describe how the savings were calculated
+}

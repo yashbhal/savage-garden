@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { CarbonSavings, CarbonSavingsApiResponse } from "../../types";
+import { fetchCarbonSavings } from "../apiService"; // Import the new API service
 
 interface UseCarbonSavingsReturn {
   carbonSavings: CarbonSavings | null;
@@ -15,26 +16,14 @@ export const useCarbonSavings = (plantId?: string): UseCarbonSavingsReturn => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchCarbonSavings = useCallback(async () => {
+  const refreshData = useCallback(async () => {
+    setLoading(true);
     try {
-      setLoading(true);
-
-      // If plantId is provided, fetch for specific plant, otherwise fetch total
-      const url = plantId
-        ? `/api/carbon-savings?plantId=${plantId}`
-        : "/api/carbon-savings";
-
-      const response = await fetch(url);
-      const data: CarbonSavingsApiResponse = await response.json();
-
-      if (!data.success) {
-        throw new Error(data.error || "Failed to fetch carbon savings data");
-      }
-
+      const data = await fetchCarbonSavings(plantId);
       setCarbonSavings(data.data || null);
       setError(null);
     } catch (err) {
-      console.error("Error fetching carbon savings:", err);
+      console.error(err);
       setError(
         err instanceof Error ? err.message : "An unknown error occurred"
       );
@@ -44,13 +33,13 @@ export const useCarbonSavings = (plantId?: string): UseCarbonSavingsReturn => {
   }, [plantId]);
 
   useEffect(() => {
-    fetchCarbonSavings();
-  }, [fetchCarbonSavings]);
+    refreshData();
+  }, [refreshData]);
 
   return {
     carbonSavings,
     loading,
     error,
-    refreshData: fetchCarbonSavings,
+    refreshData,
   };
 };

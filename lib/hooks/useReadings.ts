@@ -1,13 +1,8 @@
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { SensorReading } from "../../types";
+import { fetchReadings } from "../apiService"; // Import the new API service
 
 export type TimeRange = "24h" | "7d" | "30d";
-
-interface ReadingsApiResponse {
-  success: boolean;
-  data?: SensorReading[];
-  error?: string;
-}
 
 interface UseReadingsReturn {
   readings: SensorReading[];
@@ -31,40 +26,25 @@ export const useReadings = (
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchReadings = useCallback(async () => {
+  const refreshReadings = useCallback(async () => {
+    setLoading(true);
     try {
-      setLoading(true);
-
-      // If plantId is provided, fetch for specific plant, otherwise fetch all plants
-      const url = plantId ? `/api/plants/${plantId}/readings` : "/api/readings";
-
-      const response = await fetch(url);
-      const data: ReadingsApiResponse = await response.json();
-
-      if (!data.success) {
-        throw new Error(data.error || "Failed to fetch readings data");
-      }
-
+      const data = await fetchReadings(plantId);
       setReadings(data.data || []);
       setError(null);
     } catch (err) {
-      console.error("Error fetching readings:", err);
+      console.error(err);
       setError(
         err instanceof Error ? err.message : "An unknown error occurred"
       );
-
-      // For demo purposes, generate mock data if fetch fails
-      if (process.env.NODE_ENV === "development") {
-        setReadings(generateMockReadings());
-      }
     } finally {
       setLoading(false);
     }
   }, [plantId]);
 
   useEffect(() => {
-    fetchReadings();
-  }, [fetchReadings]);
+    refreshReadings();
+  }, [refreshReadings]);
 
   const filteredReadings = useMemo(() => {
     if (!readings || readings.length === 0) return [];
@@ -111,7 +91,7 @@ export const useReadings = (
     setTimeRange,
     loading,
     error,
-    refreshReadings: fetchReadings,
+    refreshReadings,
     aggregateData,
   };
 };

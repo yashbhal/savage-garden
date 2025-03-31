@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
-import { SensorData, SensorDataApiResponse } from "../../types";
+import { SensorData } from "../../types";
+import { fetchSensorData } from "../apiService"; // Import the new API service
 
 interface UseSensorDataReturn {
   sensorData: SensorData | null;
@@ -13,25 +14,19 @@ export const useSensorData = (plantId: string | null): UseSensorDataReturn => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchSensorData = useCallback(async () => {
+  const refreshData = useCallback(async () => {
     if (!plantId) {
       setSensorData(null);
       return;
     }
 
+    setLoading(true);
     try {
-      setLoading(true);
-      const response = await fetch(`/api/plants/${plantId}/sensor-data`);
-      const data: SensorDataApiResponse = await response.json();
-
-      if (!data.success) {
-        throw new Error(data.error || "Failed to fetch sensor data");
-      }
-
+      const data = await fetchSensorData(plantId);
       setSensorData(data.data || null);
       setError(null);
     } catch (err) {
-      console.error("Error fetching sensor data:", err);
+      console.error(err);
       setError(
         err instanceof Error ? err.message : "An unknown error occurred"
       );
@@ -42,14 +37,14 @@ export const useSensorData = (plantId: string | null): UseSensorDataReturn => {
 
   useEffect(() => {
     if (plantId) {
-      fetchSensorData();
+      refreshData();
     }
-  }, [plantId, fetchSensorData]);
+  }, [plantId, refreshData]);
 
   return {
     sensorData,
     loading,
     error,
-    refreshData: fetchSensorData,
+    refreshData,
   };
 };
