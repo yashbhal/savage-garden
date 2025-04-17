@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { SensorReading } from "../../types";
-import { fetchReadings } from "../apiService"; // Import the new API service
+import { fetchParticleData } from "../apiService";
 
 export type TimeRange = "24h" | "7d" | "30d";
 
@@ -13,12 +13,11 @@ interface UseReadingsReturn {
   error: string | null;
   refreshReadings: () => Promise<void>;
   aggregateData: (
-    dataType: "moisture" | "temperature" | "light" | "weight"
+    dataType: "moisture" | "temperature" | "light" | "humidity" | "pressure"
   ) => number | null;
 }
 
 export const useReadings = (
-  plantId?: string,
   initialTimeRange: TimeRange = "7d"
 ): UseReadingsReturn => {
   const [readings, setReadings] = useState<SensorReading[]>([]);
@@ -29,9 +28,27 @@ export const useReadings = (
   const refreshReadings = useCallback(async () => {
     setLoading(true);
     try {
-      const data = await fetchReadings(plantId);
-      setReadings(data.data || []);
-      setError(null);
+      const data = await fetchParticleData();
+      if (data.success && data.data) {
+        // Add the new reading to the array
+        setReadings((prevReadings) => {
+          const newReading = {
+            ...data.data.currentReading,
+            humidity: data.data.currentReading.humidity || 0,
+            pressure: data.data.currentReading.pressure || 0,
+          };
+          // Keep only readings from the last 30 days
+          const thirtyDaysAgo = new Date();
+          thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+          const filteredReadings = prevReadings.filter(
+            (reading) => new Date(reading.timestamp) >= thirtyDaysAgo
+          );
+
+          return [...filteredReadings, newReading];
+        });
+        setError(null);
+      }
     } catch (err) {
       console.error(err);
       setError(
@@ -40,10 +57,18 @@ export const useReadings = (
     } finally {
       setLoading(false);
     }
-  }, [plantId]);
+  }, []);
 
+  // Set up polling for real-time updates
   useEffect(() => {
+    // Initial fetch
     refreshReadings();
+
+    // Set up polling interval (every 30 seconds)
+    const interval = setInterval(refreshReadings, 30000);
+
+    // Cleanup
+    return () => clearInterval(interval);
   }, [refreshReadings]);
 
   const filteredReadings = useMemo(() => {
@@ -73,7 +98,7 @@ export const useReadings = (
 
   // Function to calculate average of a specific data type
   const aggregateData = (
-    dataType: "moisture" | "temperature" | "light" | "weight"
+    dataType: "moisture" | "temperature" | "light" | "humidity" | "pressure"
   ): number | null => {
     if (filteredReadings.length === 0) return null;
 
@@ -94,29 +119,4 @@ export const useReadings = (
     refreshReadings,
     aggregateData,
   };
-};
-
-// Helper function to generate mock readings for development
-const generateMockReadings = (): SensorReading[] => {
-  // Generate 30 days of readings, 4 readings per day
-  const readings: SensorReading[] = [];
-  const now = new Date();
-
-  for (let day = 29; day >= 0; day--) {
-    for (let hour = 0; hour < 24; hour += 6) {
-      const date = new Date(now);
-      date.setDate(date.getDate() - day);
-      date.setHours(hour, 0, 0, 0);
-
-      readings.push({
-        timestamp: date.toISOString(),
-        moisture: Math.floor(Math.random() * 30) + 60, // 60-90%
-        temperature: Math.floor(Math.random() * 10) + 18, // 18-28°C
-        light: Math.floor(Math.random() * 700) + 300, // 300-1000 lux
-        weight: Math.floor(Math.random() * 50) + 950, // 950-1000g
-      });
-    }
-  }
-
-  return readings;
 };

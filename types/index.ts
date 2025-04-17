@@ -18,7 +18,8 @@ export interface SensorReading {
   moisture: number; // 0-100%
   temperature: number; // Celsius
   light: number; // Lux
-  weight: number; // Grams
+  humidity: number; // 0-100%
+  pressure: number; // hPa or mbar
 }
 
 // Sensor Data Interface

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { format } from "date-fns";
@@ -13,7 +13,7 @@ const HEALTH_THRESHOLDS = {
 };
 
 // Calculate health score - can be moved to a shared utility file
-const calculateHealthScore = (plant: Plant): number => {
+const calculateHealthScore = (): number => {
   // This is a simplified example calculation - in a real app
   // this would use real sensor data from the plant
   return Math.min(100, Math.max(0, 70 + Math.floor(Math.random() * 30)));
@@ -40,25 +40,33 @@ interface PlantCardProps {
 }
 
 const PlantCard: FC<PlantCardProps> = ({ plant }) => {
+  const [imageError, setImageError] = useState(false);
+
   // Handle missing date
   const safeDateAdded = plant.dateAdded
     ? new Date(plant.dateAdded)
     : new Date();
 
   // Calculate health score
-  const healthScore = calculateHealthScore(plant);
+  const healthScore = calculateHealthScore();
 
   return (
     <Link href={`/plants/${plant.id}`} className="block h-full">
       <div className="h-full bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden">
-        <div className="relative h-48">
+        <div className="relative h-48 bg-gray-100">
           <Image
-            src={plant.imageUrl}
+            src={imageError ? "/images/default-plant.svg" : plant.imageUrl}
             alt={plant.name}
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
             style={{ objectFit: "cover" }}
             priority={false}
+            onError={() => setImageError(true)}
+            className="transition-opacity duration-300 opacity-0"
+            onLoadingComplete={(image) => {
+              image.classList.remove("opacity-0");
+              image.classList.add("opacity-100");
+            }}
           />
         </div>
         <div className="p-4">

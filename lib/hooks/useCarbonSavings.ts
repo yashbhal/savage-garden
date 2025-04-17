@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { CarbonSavings, CarbonSavingsApiResponse } from "../../types";
+import { CarbonSavings } from "../../types";
 import { fetchCarbonSavings } from "../apiService"; // Import the new API service
 
 interface UseCarbonSavingsReturn {
