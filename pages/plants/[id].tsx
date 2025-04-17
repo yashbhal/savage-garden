@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { NextPage } from "next";
+import { GetStaticProps, GetStaticPaths } from "next";
 import { format } from "date-fns";
 import { usePlants } from "../../lib/context/PlantContext";
 import { useSensorData } from "../../lib/hooks/useSensorData";
 import { useCarbonSavings } from "../../lib/hooks/useCarbonSavings";
 import DataChart from "../../components/ui/DataChart";
+import { plants } from "../api/plants";
+import { Plant } from "../../types";
 
 // Constants for plant health calculations
 const HEALTH_THRESHOLDS = {
@@ -41,45 +43,24 @@ const TIME_RANGE_OPTIONS = [
 
 type TimeRangeType = "24h" | "7d" | "30d";
 
-const PlantDetail: NextPage = () => {
+interface PlantDetailProps {
+  plant: Plant;
+}
+
+const PlantDetail = ({ plant }: PlantDetailProps) => {
   const router = useRouter();
-  const { id } = router.query;
-  const { plants, loading: plantsLoading, deletePlant } = usePlants();
-  const { sensorData, loading: sensorLoading } = useSensorData(id as string);
-  const { carbonSavings, loading: carbonLoading } = useCarbonSavings(
-    id as string
-  );
+  const { deletePlant } = usePlants();
+  const { sensorData, loading: sensorLoading } = useSensorData(plant.id);
+  const { carbonSavings, loading: carbonLoading } = useCarbonSavings(plant.id);
   const [timeRange, setTimeRange] = useState<TimeRangeType>("24h");
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Find the current plant
-  const plant = plants.find((p) => p.id === id);
-
-  // Loading state
-  if (plantsLoading) {
+  // If the page is not yet generated, this will be displayed
+  // initially until getStaticProps() finishes running
+  if (router.isFallback) {
     return (
       <div className="flex justify-center py-20">
         <p className="text-gray-500">Loading plant data...</p>
-      </div>
-    );
-  }
-
-  // Not found state
-  if (!plant) {
-    return (
-      <div className="bg-red-50 p-6 rounded-lg shadow-sm">
-        <h1 className="text-xl font-medium text-red-700 mb-2">
-          Plant Not Found
-        </h1>
-        <p className="text-red-600 mb-4">
-          The plant you are looking for does not exist or has been removed.
-        </p>
-        <button
-          onClick={() => router.push("/")}
-          className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-dark"
-        >
-          Back to Home
-        </button>
       </div>
     );
   }
@@ -323,6 +304,36 @@ const PlantDetail: NextPage = () => {
       {renderCarbonImpact()}
     </div>
   );
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  // Get the paths we want to pre-render based on plants
+  const paths = plants.map((plant) => ({
+    params: { id: plant.id.toString() },
+  }));
+
+  // We'll pre-render only these paths at build time.
+  // { fallback: true } means other routes will be rendered at runtime.
+  return { paths, fallback: true };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  // Find the plant data
+  const plant = plants.find((p) => p.id === params?.id);
+
+  // If no plant is found, return 404
+  if (!plant) {
+    return {
+      notFound: true,
+    };
+  }
+
+  // Pass plant data to the page via props
+  return {
+    props: { plant },
+    // Re-generate the page at most once per 10 seconds
+    revalidate: 10,
+  };
 };
 
 export default PlantDetail;
