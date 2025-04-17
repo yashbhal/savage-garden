@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { SensorData } from "../../types";
-import { fetchSensorData } from "../apiService"; // Import the new API service
+import { fetchSensorData, fetchParticleData } from "../apiService";
 
 interface UseSensorDataReturn {
   sensorData: SensorData | null;
@@ -9,10 +9,14 @@ interface UseSensorDataReturn {
   refreshData: () => Promise<void>;
 }
 
+const POLL_INTERVAL =
+  Number(process.env.NEXT_PUBLIC_PARTICLE_POLL_INTERVAL) || 30000; // 30 seconds default
+
 export const useSensorData = (plantId: string | null): UseSensorDataReturn => {
   const [sensorData, setSensorData] = useState<SensorData | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const pollInterval = useRef<NodeJS.Timeout>();
 
   const refreshData = useCallback(async () => {
     if (!plantId) {
@@ -22,9 +26,22 @@ export const useSensorData = (plantId: string | null): UseSensorDataReturn => {
 
     setLoading(true);
     try {
-      const data = await fetchSensorData(plantId);
-      setSensorData(data.data || null);
-      setError(null);
+      // Fetch real-time data from Particle Cloud
+      const particleData = await fetchParticleData();
+
+      if (particleData.success && particleData.data) {
+        // Update sensor data with real-time readings
+        setSensorData((prevData) => ({
+          sensorId: plantId, // Using plantId as sensorId for now
+          plantId,
+          currentReading: particleData.data.currentReading,
+          readings: prevData?.readings || [], // Keep historical readings
+          lastUpdated: particleData.data.lastUpdated,
+        }));
+        setError(null);
+      } else {
+        throw new Error(particleData.error || "Failed to fetch Particle data");
+      }
     } catch (err) {
       console.error(err);
       setError(
@@ -35,9 +52,21 @@ export const useSensorData = (plantId: string | null): UseSensorDataReturn => {
     }
   }, [plantId]);
 
+  // Set up polling
   useEffect(() => {
     if (plantId) {
+      // Initial fetch
       refreshData();
+
+      // Set up polling interval
+      pollInterval.current = setInterval(refreshData, POLL_INTERVAL);
+
+      // Cleanup
+      return () => {
+        if (pollInterval.current) {
+          clearInterval(pollInterval.current);
+        }
+      };
     }
   }, [plantId, refreshData]);
 

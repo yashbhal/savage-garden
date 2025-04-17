@@ -53,3 +53,14 @@ export const fetchSensorData = async (
 
   return response.json();
 };
+
+// Function to fetch real-time sensor data from Particle Cloud
+export const fetchParticleData = async () => {
+  const response = await fetch(`${API_BASE_URL}/particle-data`);
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch Particle data: ${response.statusText}`);
+  }
+
+  return response.json();
+};
