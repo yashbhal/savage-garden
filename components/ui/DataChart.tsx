@@ -26,7 +26,7 @@ ChartJS.register(
 
 interface DataChartProps {
   readings: SensorReading[];
-  dataType: "moisture" | "temperature" | "light" | "weight";
+  dataType: "moisture" | "temperature" | "light" | "humidity" | "pressure";
   title?: string;
   timeRange?: "24h" | "7d" | "30d";
 }
@@ -128,8 +128,10 @@ function getDataTypeLabel(dataType: string): string {
       return "Temperature";
     case "light":
       return "Light Intensity";
-    case "weight":
-      return "Plant Weight";
+    case "humidity":
+      return "Humidity";
+    case "pressure":
+      return "Pressure";
     default:
       return dataType;
   }
@@ -143,8 +145,10 @@ function getDataTypeColor(dataType: string): string {
       return "#ef4444"; // red
     case "light":
       return "#f59e0b"; // amber
-    case "weight":
-      return "#10b981"; // emerald
+    case "humidity":
+      return "#0ea5e9"; // sky blue
+    case "pressure":
+      return "#8b5cf6"; // purple
     default:
       return "#6366f1"; // indigo
   }
@@ -153,13 +157,14 @@ function getDataTypeColor(dataType: string): string {
 function getDataTypeUnit(dataType: string): string {
   switch (dataType) {
     case "moisture":
-      return "Moisture (%)";
+    case "humidity":
+      return "%";
     case "temperature":
-      return "Temperature (°C)";
+      return "°C";
     case "light":
-      return "Light (lux)";
-    case "weight":
-      return "Weight (g)";
+      return "lux";
+    case "pressure":
+      return "hPa";
     default:
       return "";
   }

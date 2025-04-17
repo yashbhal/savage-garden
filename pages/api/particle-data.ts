@@ -51,24 +51,22 @@ export default async function handler(
 
   try {
     // Fetch all sensor variables in parallel
-    const [light, moisture, temperature, humidity, pressure] =
-      await Promise.all([
-        fetchParticleVariable("light"),
-        fetchParticleVariable("moisture"),
-        fetchParticleVariable("temperature"),
-        fetchParticleVariable("humidity"),
-        fetchParticleVariable("pressure"),
-      ]);
+    const [light, soil_m, temperature, humidity, pressure] = await Promise.all([
+      fetchParticleVariable("light"),
+      fetchParticleVariable("soil_m"),
+      fetchParticleVariable("temperature"),
+      fetchParticleVariable("humidity"),
+      fetchParticleVariable("pressure"),
+    ]);
 
     // Create a sensor reading from the Particle data
     const currentReading: SensorReading = {
       timestamp: new Date().toISOString(),
       light: light.result,
-      moisture: moisture.result,
+      moisture: soil_m.result,
       temperature: temperature.result,
       humidity: humidity.result,
       pressure: pressure.result,
-      weight: 0, // Keeping weight but setting to 0 as requested
     };
 
     return res.status(200).json({

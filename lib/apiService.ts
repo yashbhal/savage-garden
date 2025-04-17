@@ -1,8 +1,4 @@
-import {
-  CarbonSavingsApiResponse,
-  ReadingsApiResponse,
-  SensorDataApiResponse,
-} from "../types";
+import { CarbonSavingsApiResponse } from "../types";
 
 // Base URL for the API
 const API_BASE_URL = "/api";
@@ -20,35 +16,6 @@ export const fetchCarbonSavings = async (
     throw new Error(
       `Failed to fetch carbon savings data: ${response.statusText}`
     );
-  }
-
-  return response.json();
-};
-
-// Function to fetch readings data
-export const fetchReadings = async (
-  plantId?: string
-): Promise<ReadingsApiResponse> => {
-  const url = plantId
-    ? `${API_BASE_URL}/plants/${plantId}/readings`
-    : `${API_BASE_URL}/readings`;
-  const response = await fetch(url);
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch readings data: ${response.statusText}`);
-  }
-
-  return response.json();
-};
-
-// Function to fetch sensor data
-export const fetchSensorData = async (
-  plantId: string
-): Promise<SensorDataApiResponse> => {
-  const response = await fetch(`${API_BASE_URL}/plants/${plantId}/sensor-data`);
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch sensor data: ${response.statusText}`);
   }
 
   return response.json();

@@ -10,8 +10,7 @@ export const plants: Plant[] = [
     name: "Monstera Deliciosa",
     species: "Monstera deliciosa",
     location: "Living Room",
-    imageUrl:
-      "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/images/default-plant.jpg",
     dateAdded: "2023-01-15T12:00:00Z",
     lastWatered: "2023-05-10T08:30:00Z",
     description:
@@ -24,8 +23,7 @@ export const plants: Plant[] = [
     name: "Peace Lily",
     species: "Spathiphyllum wallisii",
     location: "Bedroom",
-    imageUrl:
-      "https://images.unsplash.com/photo-1593691723820-4d20eb2a2b56?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/images/default-plant.jpg",
     dateAdded: "2023-02-20T15:30:00Z",
     lastWatered: "2023-05-12T09:15:00Z",
     description:
@@ -38,8 +36,7 @@ export const plants: Plant[] = [
     name: "Snake Plant",
     species: "Sansevieria trifasciata",
     location: "Home Office",
-    imageUrl:
-      "https://images.unsplash.com/photo-1572688484438-313a6e50c333?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/images/default-plant.jpg",
     dateAdded: "2023-03-05T10:15:00Z",
     lastWatered: "2023-05-08T18:00:00Z",
     description:

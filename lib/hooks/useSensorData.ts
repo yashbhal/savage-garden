@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { SensorData } from "../../types";
-import { fetchSensorData, fetchParticleData } from "../apiService";
+import { fetchParticleData } from "../apiService";
 
 interface UseSensorDataReturn {
   sensorData: SensorData | null;
@@ -16,7 +16,7 @@ export const useSensorData = (plantId: string | null): UseSensorDataReturn => {
   const [sensorData, setSensorData] = useState<SensorData | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const pollInterval = useRef<NodeJS.Timeout>();
+  const pollInterval = useRef<NodeJS.Timeout | undefined>(undefined);
 
   const refreshData = useCallback(async () => {
     if (!plantId) {
