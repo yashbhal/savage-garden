@@ -50,14 +50,18 @@ interface PlantDetailProps {
 const PlantDetail = ({ plant }: PlantDetailProps) => {
   const router = useRouter();
   const { deletePlant } = usePlants();
-  const { sensorData, loading: sensorLoading } = useSensorData(plant.id);
-  const { carbonSavings, loading: carbonLoading } = useCarbonSavings(plant.id);
+  const { sensorData, loading: sensorLoading } = useSensorData(
+    plant?.id ?? null
+  );
+  const { carbonSavings, loading: carbonLoading } = useCarbonSavings(
+    plant?.id ?? null
+  );
   const [timeRange, setTimeRange] = useState<TimeRangeType>("24h");
   const [isDeleting, setIsDeleting] = useState(false);
 
   // If the page is not yet generated, this will be displayed
   // initially until getStaticProps() finishes running
-  if (router.isFallback) {
+  if (router.isFallback || !plant) {
     return (
       <div className="flex justify-center py-20">
         <p className="text-gray-500">Loading plant data...</p>
@@ -313,11 +317,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }));
 
   // We'll pre-render only these paths at build time.
-  // { fallback: true } means other routes will be rendered at runtime.
-  return { paths, fallback: true };
+  // { fallback: 'blocking' } means other routes will be rendered at runtime
+  return { paths, fallback: "blocking" };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps<PlantDetailProps> = async ({
+  params,
+}) => {
   // Find the plant data
   const plant = plants.find((p) => p.id === params?.id);
 

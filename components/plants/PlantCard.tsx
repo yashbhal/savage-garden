@@ -13,7 +13,7 @@ const HEALTH_THRESHOLDS = {
 };
 
 // Calculate health score - can be moved to a shared utility file
-const calculateHealthScore = (plant: Plant): number => {
+const calculateHealthScore = (): number => {
   // This is a simplified example calculation - in a real app
   // this would use real sensor data from the plant
   return Math.min(100, Math.max(0, 70 + Math.floor(Math.random() * 30)));
@@ -48,7 +48,7 @@ const PlantCard: FC<PlantCardProps> = ({ plant }) => {
     : new Date();
 
   // Calculate health score
-  const healthScore = calculateHealthScore(plant);
+  const healthScore = calculateHealthScore();
 
   return (
     <Link href={`/plants/${plant.id}`} className="block h-full">
