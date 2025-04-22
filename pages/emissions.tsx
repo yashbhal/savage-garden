@@ -52,8 +52,8 @@ const Emissions: NextPage = () => {
     return (
       <div className="space-y-6">
         <div className="bg-white p-6 rounded-lg shadow-sm">
-          <h1 className="Title text">Emissions And Water Usage</h1>
-          <p className="Text description mb-5">Shows the emissions and water levels that would have been used within the food industry for every L of food produced</p>
+          <h1 className="Title text mb-1.5">Emissions And Water Usage</h1>
+          <p className="Text description mb-8">Shows the emissions and water levels that would have been used within the food industry for every L of food produced</p>
 
           {!plantsLoading && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
