@@ -53,13 +53,13 @@ const PlantCard: FC<PlantCardProps> = ({ plant }) => {
   return (
     <Link href={`/plants/${plant.id}`} className="block h-full">
       <div className="h-full bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden">
-        <div className="relative h-48 bg-gray-100">
+        <div className="relative h-36 bg-gray-100 flex items-center justify-center">
           <Image
-            src={imageError ? "/images/default-plant.svg" : plant.imageUrl}
+            src={imageError ? "/images/plant-svgrepo-com.svg" : plant.imageUrl}
             alt={plant.name}
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: "contain" }}
             priority={false}
             onError={() => setImageError(true)}
             className="transition-opacity duration-300 opacity-0"
