@@ -27,8 +27,8 @@ const Dashboard: NextPage = () => {
   const gramsPerTree = 21000; // CO2 grams absorbed by average tree per year;
 
   
-  var [totalCO2, setTotalCO2] = useState<number | null>(null);
-  var [totalWater, setTotalWater] = useState<number | null>(null);
+  let [totalCO2, setTotalCO2] = useState<number | null>(null);
+  let [totalWater, setTotalWater] = useState<number | null>(null);
 
   useEffect(() => {
     const co2 = localStorage.getItem('totalCO2');
