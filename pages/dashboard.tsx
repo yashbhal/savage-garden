@@ -23,28 +23,10 @@ const Dashboard: NextPage = () => {
     { value: "30d", label: "Last 30 Days" },
   ];
 
-  const gramsPerMile = 404; // CO2 grams per mile driven in average car
-  const gramsPerTree = 21000; // CO2 grams absorbed by average tree per year;
-
-  
-  let [totalCO2, setTotalCO2] = useState<number | null>(null);
-  let [totalWater, setTotalWater] = useState<number | null>(null);
-
-  useEffect(() => {
-    const co2 = localStorage.getItem('totalCO2');
-    const water = localStorage.getItem('totalWater')
-  
-    if (co2) setTotalCO2(parseFloat(co2));
-    if (water) setTotalWater(parseFloat(water));
-  }, []);
-
-  totalCO2 = totalCO2 ? totalCO2 : 0;
-  totalWater = totalWater ? totalWater : 0;
-
   return (
     <div className="space-y-6">
       <div className="bg-white p-6 rounded-lg shadow-sm">
-        <h1 className="text-2xl font-medium mb-6">Dashboard</h1>
+        <h1 className="text-2xl font-medium mb-6">Dashboard</h1>np
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           <div className="bg-green-50 p-4 rounded-lg">
@@ -57,21 +39,21 @@ const Dashboard: NextPage = () => {
           { <div className="bg-yellow-50 p-4 rounded-lg">
             <h3 className="text-sm text-gray-500 mb-1">Total CO₂ Saved</h3>
             <p className="text-2xl font-medium text-gray-900">
-              {totalCO2} g
+              {} g
             </p>
           </div> }
           
           <div className="bg-yellow-50 p-4 rounded-lg">
             <h3 className="text-sm text-gray-500 mb-1">Equivalent Car Miles</h3>
             <p className="text-2xl font-medium text-gray-900">
-              {(totalCO2 / gramsPerMile).toFixed(2)} mi
+              {} mi
             </p>
           </div>
 
           <div className="bg-yellow-50 p-4 rounded-lg">
             <h3 className="text-sm text-gray-500 mb-1">Trees Equivalent</h3>
             <p className="text-2xl font-medium text-gray-900">
-              {(totalCO2 / gramsPerTree).toFixed(2)} g
+              {} g
             </p>
           </div>
 
