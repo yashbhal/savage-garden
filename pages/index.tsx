@@ -6,6 +6,7 @@ import PlantCard from "../components/plants/PlantCard";
 import AddPlantForm from "../components/plants/AddPlantForm";
 import { plants } from "./api/plants";
 import { Plant } from "../types";
+import LightNotification from "../components/notifications/LightNotification";
 
 interface HomeProps {
   initialPlants: Plant[];
@@ -31,6 +32,7 @@ const Home: NextPage<HomeProps> = ({ initialPlants }) => {
 
   return (
     <div className="space-y-6">
+      <LightNotification />
       <div className="bg-white p-6 rounded-lg shadow-sm">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div className="w-full sm:w-96">
