@@ -36,7 +36,7 @@ const Dashboard: NextPage = () => {
             </p>
           </div>
 
-          { <div className="bg-yellow-50 p-4 rounded-lg">
+          {/* { <div className="bg-yellow-50 p-4 rounded-lg">
             <h3 className="text-sm text-gray-500 mb-1">Total CO₂ Saved</h3>
             <p className="text-2xl font-medium text-gray-900">
               {} g
@@ -55,7 +55,7 @@ const Dashboard: NextPage = () => {
             <p className="text-2xl font-medium text-gray-900">
               {} g
             </p>
-          </div>
+          </div> */}
 
         </div> 
 

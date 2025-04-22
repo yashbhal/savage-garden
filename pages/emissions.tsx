@@ -50,12 +50,10 @@ const Emissions: NextPage = () => {
         localStorage.setItem('totalWater', totalWaterUse.toString());
     }
 
-    const updateTotals = (() => {
-        localStorage.setItem('totalCO2', totalCO2.toString());
-        localStorage.setItem('totalWater', totalWaterUse.toString());
-    })
-
-    updateTotals
+    // const updateTotals = (() => {
+    //     localStorage.setItem('totalCO2', totalCO2.toString());
+    //     localStorage.setItem('totalWater', totalWaterUse.toString());
+    // })
 
     return (
       <div className="space-y-6">
@@ -84,7 +82,7 @@ const Emissions: NextPage = () => {
             </div>
           )}
         <div className="flex flex-wrap gap-5">
-            {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 bg-yellow-50 p-4 max-w-xs rounded-lg mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 bg-yellow-50 p-4 max-w-xs rounded-lg mb-6">
                 <h2 className="text-lg text-black-500 font-bold  mb-1">Total CO₂ Saved</h2>
                 <br />
                 <p className="text-2xl font-medium text-gray-900">
@@ -106,7 +104,7 @@ const Emissions: NextPage = () => {
                 <p className="text-2xl font-medium text-gray-900">
                 {(totalCO2 / gramsPerTree).toFixed(2)} g
                 </p>
-            </div> */}
+            </div>
 
         </div>
 
