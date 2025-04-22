@@ -262,7 +262,7 @@ const PlantDetail = ({ plant }: PlantDetailProps) => {
   // Render carbon impact section
   const renderCarbonImpact = () => (
     <div className="bg-white p-6 rounded-lg shadow-sm">
-      <h2 className="text-xl font-medium mb-6">Carbon Impact</h2>
+      <h2 className="text-xl font-medium mb-6"></h2>
 
       {carbonLoading ? (
         <div className="h-32 flex items-center justify-center">
@@ -271,31 +271,14 @@ const PlantDetail = ({ plant }: PlantDetailProps) => {
       ) : carbonSavings ? (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           <div className="bg-green-50 p-4 rounded-lg">
-            <h3 className="text-sm text-gray-500 mb-1">Total CO₂ Absorbed</h3>
+            <h3 className="text-sm text-gray-500 mb-1">CO₂ Saved (for a L of food item)</h3>
             <p className="text-2xl font-medium text-gray-900">
-              {carbonSavings.totalCO2Absorbed.toFixed(2)}g
-            </p>
-          </div>
-
-          <div className="bg-green-50 p-4 rounded-lg">
-            <h3 className="text-sm text-gray-500 mb-1">Equivalent Car Miles</h3>
-            <p className="text-2xl font-medium text-gray-900">
-              {carbonSavings.equivalentCarMiles.toFixed(2)}mi
-            </p>
-          </div>
-
-          <div className="bg-green-50 p-4 rounded-lg">
-            <h3 className="text-sm text-gray-500 mb-1">Daily CO₂ Absorption</h3>
-            <p className="text-2xl font-medium text-gray-900">
-              {carbonSavings.dailyRate.toFixed(2)}g/day
+              {carbonSavings.CO2Saved}
             </p>
           </div>
         </div>
       ) : (
         <div className="bg-yellow-50 p-4 rounded-md">
-          <p className="text-yellow-700">
-            Carbon data not available for this plant.
-          </p>
         </div>
       )}
     </div>

@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from "react";
-import { CarbonSavings } from "../../types";
-import { fetchCarbonSavings } from "../apiService"; // Import the new API service
+import { useState, useEffect } from 'react';
+import { CarbonSavings, CarbonSavingsApiResponse } from '../../types';
+import emissions_data from '../../emissions_data.json';
 
 interface UseCarbonSavingsReturn {
   carbonSavings: CarbonSavings | null;
@@ -10,36 +10,42 @@ interface UseCarbonSavingsReturn {
 }
 
 export const useCarbonSavings = (plantId?: string): UseCarbonSavingsReturn => {
-  const [carbonSavings, setCarbonSavings] = useState<CarbonSavings | null>(
-    null
-  );
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+    const [carbonSavings, setCarbonSavings] = useState<CarbonSavings | null>(null);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [error, setError] = useState<string | null>(null);
 
-  const refreshData = useCallback(async () => {
-    setLoading(true);
-    try {
-      const data = await fetchCarbonSavings(plantId);
-      setCarbonSavings(data.data || null);
-      setError(null);
-    } catch (err) {
-      console.error(err);
-      setError(
-        err instanceof Error ? err.message : "An unknown error occurred"
-      );
-    } finally {
-      setLoading(false);
-    }
-  }, [plantId]);
+    const fetchCarbonSavings = async () => {
+      try {
+        setLoading(true);
 
-  useEffect(() => {
-    refreshData();
-  }, [refreshData]);
+        let selectedData: CarbonSavings | null = null;
+
+        if (plantId) {
+          let selectedData = emissions_data.find(item =>
+            item.Plant?.toLowerCase() === plantId.toLowerCase()
+          ) || null;
+        } else {
+          selectedData = null; 
+        }
+    
+        setCarbonSavings(selectedData);
+        setError(null);
+      } catch (err) {
+        console.error('Error loading carbon savings from JSON:', err);
+        setError(err instanceof Error ? err.message : 'Unknown error');
+      } finally {
+        setLoading(false);
+    };
+
+    useEffect(() => {
+      fetchCarbonSavings();
+    }, [plantId]);
+  }; 
 
   return {
     carbonSavings,
     loading,
     error,
-    refreshData,
+    refreshData: fetchCarbonSavings,
   };
 };

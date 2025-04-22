@@ -3,6 +3,7 @@ import { usePlants } from "../lib/context/PlantContext";
 import { useCarbonSavings } from "../lib/hooks/useCarbonSavings";
 import { useReadings, TimeRange } from "../lib/hooks/useReadings";
 import DataChart from "../components/ui/DataChart";
+import {totalCO2} from "../pages/emissions"
 
 const Dashboard: NextPage = () => {
   const { plants, loading: plantsLoading } = usePlants();
@@ -34,33 +35,16 @@ const Dashboard: NextPage = () => {
             </p>
           </div>
 
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="text-sm text-gray-500 mb-1">CO₂ Absorbed</h3>
+          {/* <div className="bg-yellow-50 p-4 rounded-lg">
+            <h3 className="text-sm text-gray-500 mb-1">Total CO₂ Saved</h3>
             <p className="text-2xl font-medium text-gray-900">
               {carbonLoading
                 ? "..."
-                : `${carbonSavings?.totalCO2Absorbed.toFixed(2) || 0}g`}
+                : `${carbonSavings?.CO2Saved}g`}
             </p>
-          </div>
+          </div> */}
 
-          <div className="bg-yellow-50 p-4 rounded-lg">
-            <h3 className="text-sm text-gray-500 mb-1">Equivalent Car Miles</h3>
-            <p className="text-2xl font-medium text-gray-900">
-              {carbonLoading
-                ? "..."
-                : `${carbonSavings?.equivalentCarMiles.toFixed(2) || 0}mi`}
-            </p>
-          </div>
-
-          <div className="bg-purple-50 p-4 rounded-lg">
-            <h3 className="text-sm text-gray-500 mb-1">Trees Equivalent</h3>
-            <p className="text-2xl font-medium text-gray-900">
-              {carbonLoading
-                ? "..."
-                : `${carbonSavings?.treesEquivalent.toFixed(2) || 0}`}
-            </p>
-          </div>
-        </div>
+        </div> 
 
         <div className="flex justify-end mb-4">
           <div className="inline-flex rounded-md shadow-sm">
@@ -70,7 +54,7 @@ const Dashboard: NextPage = () => {
                 type="button"
                 onClick={() => setTimeRange(option.value as TimeRange)}
                 className={`px-4 py-2 text-sm font-medium ${
-                  timeRange === option.value
+                  timeRange ===  option.value
                     ? "bg-primary text-white"
                     : "bg-white text-gray-700 hover:bg-gray-50"
                 } ${

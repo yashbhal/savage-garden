@@ -43,6 +43,18 @@ export const plants: Plant[] = [
       "A hardy, drought-resistant succulent with tall, stiff leaves. Excellent for beginners.",
     carbonSavings: 95,
   },
+  {
+    id: "4",
+    name: "Tomato",
+    species: "Solanum lycopersicum",
+    location: "Home Office",
+    imageUrl: "/images/default-plant.svg",
+    dateAdded: "2023-03-05T10:15:00Z",
+    lastWatered: "2023-05-08T18:00:00Z",
+    description:
+      "...",
+    carbonSavings: 95,
+  },
 ];
 
 export default function handler(

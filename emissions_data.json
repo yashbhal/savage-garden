@@ -1,0 +1,466 @@
+[
+  {
+    "Plant": "DATE",
+    "CO2Saved": 0.6
+  },
+  {
+    "Plant": "RAISIN",
+    "CO2Saved": 0.66
+  },
+  {
+    "Plant": "EXOTIC FRUIT (G)",
+    "CO2Saved": 2.43
+  },
+  {
+    "Plant": "RASPBERRY (G)",
+    "CO2Saved": 7.35
+  },
+  {
+    "Plant": "STRAWBERRY (G)",
+    "CO2Saved": 2.94
+  },
+  {
+    "Plant": "AVOCADO (I)",
+    "CO2Saved": 1
+  },
+  {
+    "Plant": "BANANA (I)",
+    "CO2Saved": 0.81
+  },
+  {
+    "Plant": "COCONUT (I)",
+    "CO2Saved": 1.78
+  },
+  {
+    "Plant": "EXOTIC FRUIT (I)",
+    "CO2Saved": 2.43
+  },
+  {
+    "Plant": "PINEAPPLE (I)",
+    "CO2Saved": 0.73
+  },
+  {
+    "Plant": "POMEGRANATE (I)",
+    "CO2Saved": 1.17
+  },
+  {
+    "Plant": "STRAWBERRY (I)",
+    "CO2Saved": 0.84
+  },
+  {
+    "Plant": "MELON (g)*",
+    "CO2Saved": 1.41
+  },
+  {
+    "Plant": "CLEMENTINE",
+    "CO2Saved": 0.42
+  },
+  {
+    "Plant": "LEMON",
+    "CO2Saved": 0.22
+  },
+  {
+    "Plant": "LIME",
+    "CO2Saved": 0.22
+  },
+  {
+    "Plant": "MANDARIN",
+    "CO2Saved": 0.4
+  },
+  {
+    "Plant": "ORANGE",
+    "CO2Saved": 0.35
+  },
+  {
+    "Plant": "POMELO",
+    "CO2Saved": 0.51
+  },
+  {
+    "Plant": "TANGERIN",
+    "CO2Saved": 0.38
+  },
+  {
+    "Plant": "APPLE",
+    "CO2Saved": 0.31
+  },
+  {
+    "Plant": "APRICOT",
+    "CO2Saved": 0.36
+  },
+  {
+    "Plant": "AVOCADO",
+    "CO2Saved": 0.54
+  },
+  {
+    "Plant": "BANANA",
+    "CO2Saved": 0.38
+  },
+  {
+    "Plant": "CARROB",
+    "CO2Saved": 1.1
+  },
+  {
+    "Plant": "CHERRY",
+    "CO2Saved": 0.49
+  },
+  {
+    "Plant": "FIG",
+    "CO2Saved": 0.31
+  },
+  {
+    "Plant": "GRAPES",
+    "CO2Saved": 0.39
+  },
+  {
+    "Plant": "GUAVA",
+    "CO2Saved": 0.28
+  },
+  {
+    "Plant": "KIWI",
+    "CO2Saved": 0.65
+  },
+  {
+    "Plant": "MANGO",
+    "CO2Saved": 0.33
+  },
+  {
+    "Plant": "MELON",
+    "CO2Saved": 0.56
+  },
+  {
+    "Plant": "PEACH",
+    "CO2Saved": 0.43
+  },
+  {
+    "Plant": "PEAR",
+    "CO2Saved": 0.29
+  },
+  {
+    "Plant": "PINEAPPLE",
+    "CO2Saved": 0.34
+  },
+  {
+    "Plant": "PLUM",
+    "CO2Saved": 0.27
+  },
+  {
+    "Plant": "POMEGRANATE",
+    "CO2Saved": 0.45
+  },
+  {
+    "Plant": "ROCKMELON",
+    "CO2Saved": 0.39
+  },
+  {
+    "Plant": "WATERMELON",
+    "CO2Saved": 0.52
+  },
+  {
+    "Plant": "OLIVES",
+    "CO2Saved": 0.59
+  },
+  {
+    "Plant": "BLACKBERRY",
+    "CO2Saved": 0.42
+  },
+  {
+    "Plant": "BLUEBERRY",
+    "CO2Saved": 0.64
+  },
+  {
+    "Plant": "CRANBERRY",
+    "CO2Saved": 0.9
+  },
+  {
+    "Plant": "CURRANT",
+    "CO2Saved": 0.64
+  },
+  {
+    "Plant": "GOOSEBERRY",
+    "CO2Saved": 0.84
+  },
+  {
+    "Plant": "RASPBERRY",
+    "CO2Saved": 0.63
+  },
+  {
+    "Plant": "STRAWBERRY",
+    "CO2Saved": 0.68
+  },
+  {
+    "Plant": "BARLEY",
+    "CO2Saved": 0.53
+  },
+  {
+    "Plant": "MAIZE",
+    "CO2Saved": 0.79
+  },
+  {
+    "Plant": "MILLET",
+    "CO2Saved": 0.86
+  },
+  {
+    "Plant": "OAT",
+    "CO2Saved": 0.7
+  },
+  {
+    "Plant": "QUINOA",
+    "CO2Saved": 0.96
+  },
+  {
+    "Plant": "RYE",
+    "CO2Saved": 0.41
+  },
+  {
+    "Plant": "SORGHUM",
+    "CO2Saved": 0.88
+  },
+  {
+    "Plant": "WHEAT",
+    "CO2Saved": 0.67
+  },
+  {
+    "Plant": "BEAN",
+    "CO2Saved": 0.67
+  },
+  {
+    "Plant": "CHICKPEA",
+    "CO2Saved": 0.67
+  },
+  {
+    "Plant": "COWPEA",
+    "CO2Saved": 0.48
+  },
+  {
+    "Plant": "GREEN BEAN (fresh)",
+    "CO2Saved": 0.73
+  },
+  {
+    "Plant": "LENTIL",
+    "CO2Saved": 1.03
+  },
+  {
+    "Plant": "PEA",
+    "CO2Saved": 0.58
+  },
+  {
+    "Plant": "SOYBEAN",
+    "CO2Saved": 0.6
+  },
+  {
+    "Plant": "GREEN BEAN (fresh) (g)*",
+    "CO2Saved": 0.31
+  },
+  {
+    "Plant": "MUSHROOM*",
+    "CO2Saved": 1.78
+  },
+  {
+    "Plant": "ALMOND",
+    "CO2Saved": 1.9
+  },
+  {
+    "Plant": "CASHEW NUT",
+    "CO2Saved": 1.56
+  },
+  {
+    "Plant": "CHESTNUT",
+    "CO2Saved": 0.64
+  },
+  {
+    "Plant": "HAZELNUT",
+    "CO2Saved": 1.07
+  },
+  {
+    "Plant": "MIXED NUTS",
+    "CO2Saved": 0.47
+  },
+  {
+    "Plant": "PALM NUT",
+    "CO2Saved": 0.8
+  },
+  {
+    "Plant": "PEANUT",
+    "CO2Saved": 0.89
+  },
+  {
+    "Plant": "PISTACHIO",
+    "CO2Saved": 1.6
+  },
+  {
+    "Plant": "WALNUT",
+    "CO2Saved": 1.75
+  },
+  {
+    "Plant": "RICE*",
+    "CO2Saved": 2.54
+  },
+  {
+    "Plant": "RAPE SEED",
+    "CO2Saved": 1.05
+  },
+  {
+    "Plant": "SESAM SEED",
+    "CO2Saved": 0.88
+  },
+  {
+    "Plant": "SUNFLOWER SEED",
+    "CO2Saved": 1.16
+  },
+  {
+    "Plant": "CHILLY",
+    "CO2Saved": 0.8
+  },
+  {
+    "Plant": "GINGER",
+    "CO2Saved": 0.88
+  },
+  {
+    "Plant": "POTATO",
+    "CO2Saved": 0.25
+  },
+  {
+    "Plant": "STARCHY ROOTS",
+    "CO2Saved": 0.29
+  },
+  {
+    "Plant": "SWEET POTATO",
+    "CO2Saved": 0.35
+  },
+  {
+    "Plant": "CUCUMBER (G)",
+    "CO2Saved": 2.59
+  },
+  {
+    "Plant": "GERKIN (G)",
+    "CO2Saved": 2.52
+  },
+  {
+    "Plant": "LETTUCE (G)",
+    "CO2Saved": 2.69
+  },
+  {
+    "Plant": "PEPPER (G)",
+    "CO2Saved": 4.6
+  },
+  {
+    "Plant": "TOMATO (G)",
+    "CO2Saved": 2.89
+  },
+  {
+    "Plant": "CUCUMBER (g)",
+    "CO2Saved": 0.32
+  },
+  {
+    "Plant": "EGGPLANT (g)",
+    "CO2Saved": 2.9
+  },
+  {
+    "Plant": "PEPPER (g)",
+    "CO2Saved": 1.18
+  },
+  {
+    "Plant": "TOMATO (g)",
+    "CO2Saved": 0.94
+  },
+  {
+    "Plant": "ZUCCHINI (g)",
+    "CO2Saved": 1.77
+  },
+  {
+    "Plant": "ASPARAGUS",
+    "CO2Saved": 0.97
+  },
+  {
+    "Plant": "CABAGGE",
+    "CO2Saved": 0.3
+  },
+  {
+    "Plant": "LETTUCE",
+    "CO2Saved": 0.4
+  },
+  {
+    "Plant": "SPINACH",
+    "CO2Saved": 0.48
+  },
+  {
+    "Plant": "BEETROOT",
+    "CO2Saved": 0.25
+  },
+  {
+    "Plant": "CARROT",
+    "CO2Saved": 0.23
+  },
+  {
+    "Plant": "GARLIC",
+    "CO2Saved": 0.67
+  },
+  {
+    "Plant": "ONION",
+    "CO2Saved": 0.24
+  },
+  {
+    "Plant": "RADISH",
+    "CO2Saved": 0.15
+  },
+  {
+    "Plant": "SWEDE",
+    "CO2Saved": 0.29
+  },
+  {
+    "Plant": "TURNIP",
+    "CO2Saved": 0.35
+  },
+  {
+    "Plant": "ARTICHOKE",
+    "CO2Saved": 0.33
+  },
+  {
+    "Plant": "BROCCOLI",
+    "CO2Saved": 0.67
+  },
+  {
+    "Plant": "CAULIFLOWER",
+    "CO2Saved": 0.32
+  },
+  {
+    "Plant": "CELERY",
+    "CO2Saved": 0.32
+  },
+  {
+    "Plant": "CUCUMBER",
+    "CO2Saved": 0.32
+  },
+  {
+    "Plant": "EGGPLANT",
+    "CO2Saved": 0.45
+  },
+  {
+    "Plant": "FENNEL",
+    "CO2Saved": 0.48
+  },
+  {
+    "Plant": "GERKIN",
+    "CO2Saved": 0.23
+  },
+  {
+    "Plant": "PEPPER",
+    "CO2Saved": 0.58
+  },
+  {
+    "Plant": "PUMPKIN",
+    "CO2Saved": 0.38
+  },
+  {
+    "Plant": "TOMATO",
+    "CO2Saved": 0.48
+  },
+  {
+    "Plant": "VEGETABLES",
+    "CO2Saved": 0.69
+  },
+  {
+    "Plant": "ZUCCHINI",
+    "CO2Saved": 0.65
+  }
+]
