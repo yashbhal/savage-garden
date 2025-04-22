@@ -10,7 +10,7 @@ export const plants: Plant[] = [
     name: "Monstera Deliciosa",
     species: "Monstera deliciosa",
     location: "Living Room",
-    imageUrl: "/images/default-plant.svg",
+    imageUrl: "/images/plant-svgrepo-com.svg",
     dateAdded: "2023-01-15T12:00:00Z",
     lastWatered: "2023-05-10T08:30:00Z",
     description:
@@ -23,7 +23,7 @@ export const plants: Plant[] = [
     name: "Peace Lily",
     species: "Spathiphyllum wallisii",
     location: "Bedroom",
-    imageUrl: "/images/default-plant.svg",
+    imageUrl: "/images/plant-2-svgrepo-com.svg",
     dateAdded: "2023-02-20T15:30:00Z",
     lastWatered: "2023-05-12T09:15:00Z",
     description:
@@ -36,7 +36,7 @@ export const plants: Plant[] = [
     name: "Snake Plant",
     species: "Sansevieria trifasciata",
     location: "Home Office",
-    imageUrl: "/images/default-plant.svg",
+    imageUrl: "/images/plant-3-svgrepo-com.svg",
     dateAdded: "2023-03-05T10:15:00Z",
     lastWatered: "2023-05-08T18:00:00Z",
     description:

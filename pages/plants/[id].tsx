@@ -107,14 +107,14 @@ const PlantDetail = ({ plant }: PlantDetailProps) => {
     <div className="bg-white p-6 rounded-lg shadow-sm">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="md:col-span-1">
-          <div className="relative h-64 rounded-lg overflow-hidden">
+          <div className="relative h-64 rounded-lg overflow-hidden flex items-center justify-center">
             <Image
               src={plant.imageUrl}
               alt={plant.name}
               fill
               priority
               sizes="(max-width: 768px) 100vw, 33vw"
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: "contain" }}
             />
           </div>
         </div>
