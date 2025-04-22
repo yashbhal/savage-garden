@@ -42,8 +42,8 @@ const Emissions: NextPage = () => {
       .filter(Boolean) as { id: string; name: string; water: number }[];
   
 
-    var totalCO2 = co2Plants.reduce((sum, plant) => sum + plant.co2 * 1000, 0);
-    var totalWaterUse = waterFootprintPlants.reduce((sum, plant) => sum + plant.water, 0);
+    let totalCO2 = co2Plants.reduce((sum, plant) => sum + plant.co2 * 1000, 0);
+    let totalWaterUse = waterFootprintPlants.reduce((sum, plant) => sum + plant.water, 0);
 
     if (totalCO2 && totalWaterUse) {
         localStorage.setItem('totalCO2', totalCO2.toString());
