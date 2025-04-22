@@ -93,6 +93,7 @@ function handleAddPlant(
 ) {
   try {
     const newPlant: Plant = {
+      
       ...req.body,
       id: uuidv4(),
     };

@@ -18,7 +18,6 @@ const Emissions: NextPage = () => {
 
       return match ? (match.CO2Saved) : null;
     };
-  
 
     const co2Plants = plants.map(plant => {
         const co2 = getCO2ForPlant(plant.name);
@@ -49,11 +48,6 @@ const Emissions: NextPage = () => {
         localStorage.setItem('totalCO2', totalCO2.toString());
         localStorage.setItem('totalWater', totalWaterUse.toString());
     }
-
-    // const updateTotals = (() => {
-    //     localStorage.setItem('totalCO2', totalCO2.toString());
-    //     localStorage.setItem('totalWater', totalWaterUse.toString());
-    // })
 
     return (
       <div className="space-y-6">

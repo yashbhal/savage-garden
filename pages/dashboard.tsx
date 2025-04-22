@@ -3,7 +3,6 @@ import { usePlants } from "../lib/context/PlantContext";
 import { useCarbonSavings } from "../lib/hooks/useCarbonSavings";
 import { useReadings, TimeRange } from "../lib/hooks/useReadings";
 import DataChart from "../components/ui/DataChart";
-import { useEffect, useState } from 'react';
 
 const Dashboard: NextPage = () => {
   const { plants, loading: plantsLoading } = usePlants();
@@ -35,28 +34,6 @@ const Dashboard: NextPage = () => {
               {plantsLoading ? "..." : plants.length}
             </p>
           </div>
-
-          {/* { <div className="bg-yellow-50 p-4 rounded-lg">
-            <h3 className="text-sm text-gray-500 mb-1">Total CO₂ Saved</h3>
-            <p className="text-2xl font-medium text-gray-900">
-              {} g
-            </p>
-          </div> }
-          
-          <div className="bg-yellow-50 p-4 rounded-lg">
-            <h3 className="text-sm text-gray-500 mb-1">Equivalent Car Miles</h3>
-            <p className="text-2xl font-medium text-gray-900">
-              {} mi
-            </p>
-          </div>
-
-          <div className="bg-yellow-50 p-4 rounded-lg">
-            <h3 className="text-sm text-gray-500 mb-1">Trees Equivalent</h3>
-            <p className="text-2xl font-medium text-gray-900">
-              {} g
-            </p>
-          </div> */}
-
         </div> 
 
         <div className="flex justify-end mb-4">
