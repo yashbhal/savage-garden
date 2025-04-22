@@ -40,7 +40,7 @@ const Layout = ({ children, title = 'Savage Garden' }: LayoutProps) => {
                   Dashboard
                 </Link>
                 <Link href="/emissions" className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${isActive('/emissions')}`}>
-                  Emissions
+                  Footprint
                 </Link>
               </nav>
             </div>

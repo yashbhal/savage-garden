@@ -261,7 +261,7 @@ const PlantDetail = ({ plant }: PlantDetailProps) => {
 
   // Render carbon impact section
   const renderCarbonImpact = () => (
-    <div className="bg-white p-6 rounded-lg shadow-sm">
+    <div className="bg-clear p-6 rounded-lg shadow-sm">
       <h2 className="text-xl font-medium mb-6"></h2>
 
       {carbonLoading ? (
@@ -270,15 +270,15 @@ const PlantDetail = ({ plant }: PlantDetailProps) => {
         </div>
       ) : carbonSavings ? (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <div className="bg-green-50 p-4 rounded-lg">
-            <h3 className="text-sm text-gray-500 mb-1">CO₂ Saved (for a L of food item)</h3>
+          <div className="bg-clear-50 p-4 rounded-lg">
+            {/* <h3 className="text-sm text-gray-500 mb-1">CO₂ Saved (for a L of food item)</h3>
             <p className="text-2xl font-medium text-gray-900">
               {carbonSavings.CO2Saved}
-            </p>
+            </p> */}
           </div>
         </div>
       ) : (
-        <div className="bg-yellow-50 p-4 rounded-md">
+        <div>
         </div>
       )}
     </div>

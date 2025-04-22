@@ -115,5 +115,6 @@ function handleAddPlant(
       success: false,
       error: "Failed to add plant",
     });
+    
   }
 }

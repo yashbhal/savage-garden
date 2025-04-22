@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { CarbonSavings, CarbonSavingsApiResponse } from '../../types';
-import emissions_data from '../../emissions_data.json';
 
 interface UseCarbonSavingsReturn {
   carbonSavings: CarbonSavings | null;
@@ -10,37 +9,39 @@ interface UseCarbonSavingsReturn {
 }
 
 export const useCarbonSavings = (plantId?: string): UseCarbonSavingsReturn => {
-    const [carbonSavings, setCarbonSavings] = useState<CarbonSavings | null>(null);
-    const [loading, setLoading] = useState<boolean>(false);
-    const [error, setError] = useState<string | null>(null);
+  const [carbonSavings, setCarbonSavings] = useState<CarbonSavings | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
-    const fetchCarbonSavings = async () => {
-      try {
-        setLoading(true);
+  const fetchCarbonSavings = async () => {
+    try {
+      setLoading(true);
+      
+      // If plantId is provided, fetch for specific plant, otherwise fetch total
+      const url = plantId 
+        ? `/api/carbon-savings?plantId=${plantId}`
+        : '/api/carbon-savings';
+        
+      const response = await fetch(url);
+      const data: CarbonSavingsApiResponse = await response.json();
+      
+      if (!data.success) {
+        throw new Error(data.error || 'Failed to fetch carbon savings data');
+      }
 
-        let selectedData: CarbonSavings | null = null;
+      setCarbonSavings(data.data || null);
+      setError(null);
+    } catch (err) {
+      console.error('Error fetching carbon savings:', err);
+      setError(err instanceof Error ? err.message : 'An unknown error occurred');
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        if (plantId) {
-          let selectedData = emissions_data.find(item =>
-            item.Plant?.toLowerCase() === plantId.toLowerCase()
-          ) || null;
-        } else {
-          selectedData = null; 
-        }
-    
-        setCarbonSavings(selectedData);
-        setError(null);
-      } catch (err) {
-        console.error('Error loading carbon savings from JSON:', err);
-        setError(err instanceof Error ? err.message : 'Unknown error');
-      } finally {
-        setLoading(false);
-    };
-
-    useEffect(() => {
-      fetchCarbonSavings();
-    }, [plantId]);
-  }; 
+  useEffect(() => {
+    fetchCarbonSavings();
+  }, [plantId]);
 
   return {
     carbonSavings,
@@ -48,4 +49,4 @@ export const useCarbonSavings = (plantId?: string): UseCarbonSavingsReturn => {
     error,
     refreshData: fetchCarbonSavings,
   };
-};
+}; 

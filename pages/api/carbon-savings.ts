@@ -52,7 +52,7 @@ function calculateCarbonSavings(co2Grams: number): CarbonSavings {
   const dailyRate = co2Grams / 365; // Assume this amount is over a year
   
   return {
-    CO2Saved: co2Grams,
+    totalCO2Absorbed: co2Grams,
     equivalentCarMiles: co2Grams / gramsPerMile,
     treesEquivalent: co2Grams / gramsPerTree,
     dailyRate: dailyRate,

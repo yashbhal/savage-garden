@@ -33,7 +33,7 @@ export interface SensorData {
 
 // Carbon Savings Interface
 export interface CarbonSavings {
-  CO2: number; // Grams
+  totalCO2Absorbed: number; // Grams
   equivalentCarMiles: number;
   treesEquivalent: number;
   dailyRate: number; // Grams per day
