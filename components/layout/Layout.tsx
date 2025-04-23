@@ -39,7 +39,7 @@ const Layout = ({ children, title = 'Savage Garden' }: LayoutProps) => {
                 <Link href="/dashboard" className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${isActive('/dashboard')}`}>
                   Dashboard
                 </Link>
-                <Link href="/emissions" className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${isActive('/emissions')}`}>
+                <Link href="/footprint" className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${isActive('/footprint')}`}>
                   Footprint
                 </Link>
               </nav>
