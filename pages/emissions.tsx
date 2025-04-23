@@ -11,18 +11,17 @@ const Emissions: NextPage = () => {
     const gramsPerMile = 404; // CO2 grams per mile driven in average car
     const gramsPerTree = 24629; // CO2 grams absorbed by average tree per year
 
-    const getCO2ForPlant = (plantName: string): number => {
+    const getCO2ForPlant = (plantName: string): number | null => {
       const match = emissions_data.find(item =>
         item.Plant?.toLowerCase() === plantName.toLowerCase()
       );
 
-      return match ? (match.CO2Saved) : 0;
+      return match ? (match.CO2Saved) : null;
     };
 
     const co2Plants = plants.map(plant => {
         const co2 = getCO2ForPlant(plant.name);
-        plant.carbonSavings = getCO2ForPlant(plant.name);
-        return co2 !== null ? { ...plant, co2 } : 0;
+        return co2 !== null ? { ...plant, co2 } : null;
     })
     .filter(Boolean) as { id: string; name: string; co2: number }[];
 
@@ -37,7 +36,7 @@ const Emissions: NextPage = () => {
   
       const waterFootprintPlants = plants.map(plant => {
           const water = getWaterForPlant(plant.name);
-          return water !== null ? { ...plant, water } : 0;
+          return water !== null ? { ...plant, water } : null;
       })
       .filter(Boolean) as { id: string; name: string; water: number }[];
   
