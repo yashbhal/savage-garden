@@ -9,31 +9,32 @@
 5. [Data Flow & State Management](#data-flow--state-management)
 6. [API Endpoints](#api-endpoints)
 7. [Custom Hooks](#custom-hooks)
-8. [Features & Functionality](#features--functionality)
-9. [Development & Deployment](#development--deployment)
+8. [Environmental Impact Tracking](#environmental-impact-tracking)
+9. [Notification System](#notification-system)
+10. [Development & Deployment](#development--deployment)
 
 ## Introduction
 
-Savage Garden v2 is a modern web application built with Next.js and React, designed to help users track and monitor their plants using sensor data. The application helps users visualize their plant data, track carbon savings, and make informed decisions about plant care.
+Savage Garden v2 is a modern web application built with Next.js and React, designed to help users track and monitor their plants using sensor data. The backend connects to Particle Photon 2 devices via the Particle Cloud API. All plant sensor data is fetched securely using device- and user-specific credentials. The application helps users visualize their plant data, track carbon savings and emissions, and make informed decisions about plant care through real-time notifications and environmental impact metrics.
 
 The application follows a client-server architecture where the frontend is built with React components, and the backend is implemented as Next.js API routes. Data is fetched and managed using custom hooks and context APIs.
 
 ## Project Structure
-
-The project follows a standard Next.js folder structure:
 
 ```
 savage-garden-v2/
 ├── components/      # Reusable UI components
 │   ├── layout/      # Layout components (Header, Footer, etc.)
 │   ├── plants/      # Plant-specific components
+│   ├── notifications/ # Notification components
 │   └── ui/          # Generic UI components
 ├── lib/             # Utility functions, hooks, and contexts
 │   ├── context/     # React Context for state management
 │   └── hooks/       # Custom React hooks
 ├── pages/           # Next.js pages and API routes
 │   ├── api/         # Backend API endpoints
-│   └── plants/      # Plant-specific pages
+│   ├── plants/      # Plant-specific pages
+│   └── emissions/   # Emissions tracking pages
 ├── public/          # Static assets
 ├── styles/          # Global CSS and styling
 └── types/           # TypeScript type definitions
@@ -44,8 +45,6 @@ savage-garden-v2/
 The application uses several core data structures defined in `types/index.ts`:
 
 ### Plant
-
-Represents a plant in the system:
 
 ```typescript
 interface Plant {
@@ -64,213 +63,146 @@ interface Plant {
 
 ### SensorReading
 
-Represents a single sensor reading from a plant:
-
 ```typescript
 interface SensorReading {
   timestamp: string;
   moisture: number; // 0-100%
-  temperature: number; // celsius
-  light: number; // lux
-  weight: number; // grams
+  temperature: number; // Celsius
+  light: number; // Lux
+  humidity: number; // %
+  pressure: number; // hPa
 }
 ```
 
-### SensorData
-
-Represents all sensor data associated with a plant:
+### EmissionsData
 
 ```typescript
-interface SensorData {
-  sensorId: string;
-  plantId: string;
-  currentReading: SensorReading;
-  readings: SensorReading[];
+interface EmissionsData {
+  date: string;
+  co2: number;
+  waterUsage: number;
+  energyConsumption: number;
 }
 ```
 
-### CarbonSavings
-
-Represents carbon savings data:
+### NotificationConfig
 
 ```typescript
-interface CarbonSavings {
-  totalCO2Absorbed: number; // grams
-  equivalentCarMiles: number;
-  treesEquivalent: number;
-  dailyRate: number; // grams per day
+interface NotificationConfig {
+  type: 'care' | 'environmental' | 'sensor';
+  message: string;
+  priority: 'low' | 'medium' | 'high';
+  displayDuration?: number;
 }
 ```
 
 ## Frontend Components
 
-The application uses a component-based architecture. Key components include:
-
-### Layout Components
-- Header/Navbar
-- Footer
-- Layout wrapper
-
 ### Plant Components
-- PlantCard: Displays basic plant information
-- PlantDetails: Shows detailed plant information
-- PlantForm: Used for adding/editing plants
+- `PlantCard`: Displays plant summary information
+- `PlantDetails`: Shows detailed plant information and sensor data
+- `AddPlantForm`: Form for adding new plants
 
-### UI Components
-- DataChart: Displays sensor data in charts
-- Cards, buttons, and other generic UI elements
+### Notification Components
+- `LightNotification`: Static notification for plant light requirements, styled minimally with Tailwind, visible on the homepage ("Turn on the glow lamp for Plant 1").
+- `NotificationContainer`: Manages multiple notifications (future extension)
+- `NotificationMessage`: Individual notification display (future extension)
 
-## Data Flow & State Management
+### Environmental Components
+- `EmissionsChart`: Visualizes emissions data
+- `CarbonSavingsMetrics`: Displays carbon savings information
+- `WaterFootprintDisplay`: Shows water usage statistics
 
-### PlantContext
+## Environmental Impact Tracking
 
-The application uses a PlantContext (`lib/context/PlantContext.tsx`) for global state management of plants. It provides:
+The system tracks various environmental metrics:
 
-- A list of all plants
-- Loading and error states
-- Methods for adding, updating, and deleting plants
-- A method for refreshing plants
+### Carbon Savings
+- Calculates CO₂ absorption based on plant species and growth
+- Converts to equivalent metrics (car miles, trees)
+- Tracks historical carbon savings
 
-### State Flow
+### Emissions Data
+- Records and displays emissions history
+- Calculates water footprint
+- Tracks energy consumption
+- Provides comparative environmental impact data
 
-1. The PlantContext initializes by fetching plants from the API
-2. Components use the `usePlants` hook to access plant data
-3. When modifications are made, the context updates its state and persists changes to the API
-4. The updated state is propagated to all consuming components
+### Data Sources
+- Plant-specific absorption rates
+- Historical emissions data
+- Water usage calculations
+- Particle Cloud sensor data
+
+## Notification System
+
+The application includes a comprehensive notification system:
+
+### Types of Notifications
+1. Plant Care
+   - Light requirements
+   - Watering schedules
+   - Temperature alerts
+
+2. Environmental
+   - Carbon savings milestones
+   - Emissions alerts
+   - Water usage warnings
+
+3. Sensor Status
+   - Connection issues
+   - Battery levels
+   - Calibration requirements
+
+### Implementation
+- Static notification for critical information (homepage)
+- Styled using Tailwind CSS, non-intrusive and minimal
+- Future extensibility for dynamic and priority-based notifications
 
 ## API Endpoints
 
-The application exposes several RESTful API endpoints:
+### Particle Cloud Data
+- `GET /api/particle-data`: Fetches the latest sensor data from the Particle Cloud for the configured device using environment variables `PARTICLE_DEVICE_ID` and `PARTICLE_ACCESS_TOKEN`.
 
-### Plants API
+### Plant Data
+- `GET /api/plants` - List all plants
+- `POST /api/plants` - Create new plant
+- `GET /api/plants/{id}` - Get plant details
+- `PUT /api/plants/{id}` - Update plant
+- `DELETE /api/plants/{id}` - Delete plant
 
-- `GET /api/plants`: Retrieves all plants
-- `POST /api/plants`: Creates a new plant
-- `GET /api/plants/[id]`: Retrieves a specific plant
-- `PUT /api/plants/[id]`: Updates a specific plant
-- `DELETE /api/plants/[id]`: Deletes a specific plant
-
-### Sensor Data API
-
-- `GET /api/plants/[id]/sensor-data`: Retrieves sensor data for a specific plant
-- `GET /api/plants/[id]/readings`: Retrieves sensor readings for a specific plant
-- `GET /api/readings`: Retrieves all sensor readings
-
-### Carbon Savings API
-
-- `GET /api/carbon-savings`: Retrieves total carbon savings
-- `GET /api/carbon-savings?plantId=[id]`: Retrieves carbon savings for a specific plant
+### Environmental Data
+- `GET /api/carbon-savings` - Get carbon savings metrics
+- `GET /api/emissions` - Get emissions data
+- `GET /api/water-footprint` - Get water usage data
 
 ## Custom Hooks
 
-The application uses several custom hooks to encapsulate logic and provide a cleaner interface for components:
-
-### usePlants
-
-A hook to access the PlantContext for plant data and operations.
-
+### Plant Management
 ```typescript
 const { plants, loading, error, addPlant, updatePlant, deletePlant } = usePlants();
 ```
 
-### useSensorData
-
-A hook to fetch and manage sensor data for a specific plant.
-
+### Environmental Data
 ```typescript
-const { sensorData, loading, error, refreshData } = useSensorData(plantId);
+const { carbonSavings, emissions, waterFootprint } = useEnvironmentalData();
 ```
 
-### useCarbonSavings
-
-A hook to fetch and manage carbon savings data.
-
+### Notifications
 ```typescript
-const { carbonSavings, loading, error, refreshData } = useCarbonSavings(plantId);
+const { showNotification, hideNotification, updateNotification } = useNotifications();
 ```
-
-### useReadings
-
-A hook to fetch, filter, and aggregate sensor readings with time range filtering.
-
-```typescript
-const { 
-  readings, 
-  filteredReadings, 
-  timeRange, 
-  setTimeRange, 
-  loading, 
-  error, 
-  refreshReadings, 
-  aggregateData 
-} = useReadings(plantId);
-```
-
-## Features & Functionality
-
-### Dashboard
-
-The dashboard displays aggregate information and charts:
-- Total number of plants
-- Carbon savings metrics
-- Sensor data visualizations with time filtering
-- Average metrics for moisture, temperature, light, and weight
-
-### Plant Management
-
-Users can:
-- View a list of all plants
-- Add new plants
-- Update existing plants
-- Delete plants
-- View detailed information about each plant
-
-### Sensor Data Visualization
-
-The application visualizes sensor data using charts:
-- Historical data with time range filtering (24 hours, 7 days, 30 days)
-- Different chart views for moisture, temperature, light, and weight
-- Aggregated metrics
-
-### Carbon Savings Tracking
-
-The application tracks carbon savings:
-- Total CO2 absorbed
-- Equivalent car miles
-- Trees equivalent
-- Daily absorption rate
-
 ## Development & Deployment
 
 ### Local Development
+1. Install dependencies: `npm install`
+2. Set up environment variables:
+   - `PARTICLE_DEVICE_ID`: Your Particle device's ID
+   - `PARTICLE_ACCESS_TOKEN`: Your Particle Cloud access token
+3. Run development server: `npm run dev`
+4. Access at: `http://localhost:3000`
 
-To run the application locally:
-
-```bash
-# Install dependencies
-npm install
-
-# Run the development server
-npm run dev
-```
-
-The application will be available at `http://localhost:3000`.
-
-### Building for Production
-
-To build the application for production:
-
-```bash
-# Build the application
-npm run build
-
-# Start the production server
-npm start
-```
-
-### Environment Variables
-
-The application may use the following environment variables:
-
-- `NEXT_PUBLIC_API_URL`: Base URL for API requests (if using external API)
-- `DATABASE_URL`: Connection string for the database (if applicable)
+### Production Deployment
+- Automated deployment via Vercel
+- Environment variable configuration
+- Build optimization

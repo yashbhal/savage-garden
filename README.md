@@ -1,12 +1,14 @@
 # Savage Garden
 
-Savage Garden is a plant monitoring system that connects with ESP32 devices to track plant health and environmental conditions. The system helps plant enthusiasts maintain optimal growing conditions while also tracking the positive environmental impact of their plants through carbon savings calculations.
+Savage Garden is a plant monitoring system that connects with Particle Photon 2 devices through the Particle Cloud to track plant health and environmental conditions. The system helps plant enthusiasts maintain optimal growing conditions while also tracking the positive environmental impact of their plants through carbon savings and emissions calculations.
 
 ## Features
 
 - Track multiple plants with search functionality
-- Monitor sensor data (moisture, temperature, light, weight)
+- Monitor sensor data (moisture, temperature, light, humidity, pressure)
 - Calculate carbon savings and environmental impact
+- Track emissions data and water footprint
+- Real-time plant care notifications
 - Responsive design for all device sizes
 
 ## Tech Stack
@@ -15,6 +17,7 @@ Savage Garden is a plant monitoring system that connects with ESP32 devices to t
 - Tailwind CSS for styling
 - Chart.js for data visualization
 - Context API for state management
+- Particle Cloud API integration
 - API routes for backend functionality
 
 ## Project Structure
@@ -23,6 +26,7 @@ Savage Garden is a plant monitoring system that connects with ESP32 devices to t
   - **layout/** - Layout components like headers and footers
   - **plants/** - Plant-specific components
   - **ui/** - Generic UI components
+  - **notifications/** - Notification components
 - **lib/** - Application logic
   - **context/** - React Context providers
   - **hooks/** - Custom hooks for data fetching
@@ -42,7 +46,14 @@ npm install
 yarn install
 ```
 
-Then, run the development server:
+Then, set up your environment variables:
+
+```env
+PARTICLE_DEVICE_ID=your_device_id
+PARTICLE_ACCESS_TOKEN=your_access_token
+```
+
+Run the development server:
 
 ```bash
 npm run dev
@@ -52,28 +63,47 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## ESP32 Integration
+## Particle Cloud Integration
 
-The system is designed to connect with ESP32 devices that have sensors for:
+The system integrates with Particle Cloud to connect with Particle Photon 2 devices that have sensors for:
 
 - Soil moisture
 - Temperature
 - Light intensity
-- Plant weight
+- Humidity
+- Pressure
 
-In a production environment, the ESP32 devices would send data to the API endpoints:
+The application fetches real-time sensor data through the Particle Cloud API:
 
-- `POST /api/plants/{id}/sensor-data` - Update sensor data for a specific plant
+- `GET /api/particle-data` - Fetch current sensor readings
+- Variables exposed through Particle Cloud:
+  - moisture
+  - temperature
+  - light
+  - humidity
+  - pressure
 
-The current implementation uses mock data for demonstration purposes.
+## Environmental Impact Tracking
 
-## Carbon Savings Calculation
+The system provides comprehensive environmental impact metrics:
 
-The system calculates carbon savings based on plant data and provides metrics for:
-
+### Carbon Savings
 - Total CO₂ absorbed
 - Equivalent car miles not driven
 - Equivalent number of trees
+
+### Emissions Data
+- Historical emissions tracking
+- Water footprint calculations
+- Energy consumption tracking
+- Environmental impact comparisons
+
+## Notifications
+
+The system includes a notification system for:
+- Plant care reminders
+- Environmental alerts
+- Sensor status updates
 
 ## Future Development
 
@@ -81,6 +111,7 @@ The system calculates carbon savings based on plant data and provides metrics fo
 - Machine learning for plant species recognition
 - Community features for plant care tips
 - Mobile app for on-the-go monitoring
+- Enhanced environmental impact tracking
 
 ## License
 
@@ -88,15 +119,12 @@ MIT
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+To learn more about the technologies used:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Particle Cloud API Documentation](https://docs.particle.io/reference/cloud-apis/api/)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
 
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
