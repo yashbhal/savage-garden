@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { CarbonSavings, CarbonSavingsApiResponse } from '../../types';
 
 interface UseCarbonSavingsReturn {
@@ -13,7 +13,7 @@ export const useCarbonSavings = (plantId?: string): UseCarbonSavingsReturn => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchCarbonSavings = async () => {
+  const fetchCarbonSavings = useCallback(async () => {
     try {
       setLoading(true);
       
@@ -37,11 +37,11 @@ export const useCarbonSavings = (plantId?: string): UseCarbonSavingsReturn => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [plantId]);
 
   useEffect(() => {
     fetchCarbonSavings();
-  }, [plantId]);
+  }, [fetchCarbonSavings]);
 
   return {
     carbonSavings,
@@ -49,4 +49,4 @@ export const useCarbonSavings = (plantId?: string): UseCarbonSavingsReturn => {
     error,
     refreshData: fetchCarbonSavings,
   };
-}; 
+};

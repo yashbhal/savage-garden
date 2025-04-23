@@ -1,0 +1,50 @@
+/* Enhanced aesthetic styles for Savage Garden */
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: scale(1.02);
+  box-shadow: var(--tw-shadow-card-hover);
+}
+
+/* Button press effects */
+.btn-press {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-press:active {
+  transform: scale(0.98);
+}
+
+/* Enhanced typography */
+.text-enhanced p {
+  line-height: 1.75;
+}
+
+.text-enhanced h1, .text-enhanced h2, .text-enhanced h3 {
+  letter-spacing: -0.01em;
+}
+
+/* Consistent color transitions */
+.color-transition {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Page transitions */
+.page-transition {
+  animation: pageTransition 0.4s ease-out;
+}
+
+/* Mobile padding enhancement */
+@media (max-width: 640px) {
+  .mobile-enhanced {
+    padding: 1.25rem !important;
+  }
+  
+  .mobile-enhanced-text {
+    font-size: 0.9375rem !important;
+  }
+}

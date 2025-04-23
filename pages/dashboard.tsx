@@ -6,7 +6,7 @@ import DataChart from "../components/ui/DataChart";
 
 const Dashboard: NextPage = () => {
   const { plants, loading: plantsLoading } = usePlants();
-  const { carbonSavings, loading: carbonLoading } = useCarbonSavings();
+  const { loading: carbonLoading } = useCarbonSavings();
   const {
     filteredReadings,
     timeRange,
