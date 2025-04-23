@@ -27,16 +27,18 @@ savage-garden-v2/
 │   ├── layout/      # Layout components (Header, Footer, etc.)
 │   ├── plants/      # Plant-specific components
 │   ├── notifications/ # Notification components
-│   └── ui/          # Generic UI components
+│   └── ui/          # Generic UI components (PageTransition, SkeletonLoader)
 ├── lib/             # Utility functions, hooks, and contexts
-│   ├── context/     # React Context for state management
+│   ├── context/     # React Context for state management (PlantContext, NotificationContext)
 │   └── hooks/       # Custom React hooks
 ├── pages/           # Next.js pages and API routes
 │   ├── api/         # Backend API endpoints
 │   ├── plants/      # Plant-specific pages
-│   └── emissions/   # Emissions tracking pages
+│   └── footprint/   # Environmental footprint tracking page
 ├── public/          # Static assets
-├── styles/          # Global CSS and styling
+├── styles/          # Global CSS and aesthetic styling
+│   ├── globals.css  # Base styles
+│   └── aesthetic.css # Enhanced animations and interactions
 └── types/           # TypeScript type definitions
 ```
 
@@ -136,28 +138,56 @@ The system tracks various environmental metrics:
 
 ## Notification System
 
-The application includes a comprehensive notification system:
+The notification system provides users with timely plant care reminders and system updates.
 
 ### Types of Notifications
-1. Plant Care
-   - Light requirements
+1. Plant Care Reminders
    - Watering schedules
-   - Temperature alerts
-
-2. Environmental
-   - Carbon savings milestones
-   - Emissions alerts
-   - Water usage warnings
-
+   - Light requirements
+   - Humidity alerts
+2. System Updates
+   - Connection status
+   - New features
 3. Sensor Status
    - Connection issues
    - Battery levels
    - Calibration requirements
 
 ### Implementation
-- Static notification for critical information (homepage)
+- Automated notifications that appear every 30 seconds
+- Global notification context provider (`NotificationContext`)
+- Customizable notification components (`LightNotification`)
+- Randomized notification messages from a predefined set
+- Smooth fade-in/fade-out animations for better user experience
 - Styled using Tailwind CSS, non-intrusive and minimal
+- Configurable duration and auto-dismissal behavior
 - Future extensibility for dynamic and priority-based notifications
+
+## UI Enhancements
+
+The application includes several UI enhancements to improve user experience:
+
+### Page Transitions
+- Smooth fade transitions between pages using Framer Motion
+- Consistent animation timing and easing for a polished feel
+- Implementation via `PageTransition` component and AnimatePresence
+
+### Loading States
+- Skeleton loaders for content while data is loading
+- Different skeleton types for cards, text blocks, and metrics
+- Animated pulse effect for better visual feedback
+
+### Micro-interactions
+- Subtle card hover effects with scale transforms (1.02-1.03)
+- Button press effects that scale down slightly on click
+- Gentle color transitions on interactive elements
+- Consistent spacing and padding optimized for mobile
+
+### Responsive Design
+- Mobile-first approach with progressive enhancement
+- Hamburger menu for mobile navigation
+- Optimized touch targets and spacing for mobile devices
+- Consistent design language across all screen sizes
 
 ## API Endpoints
 
@@ -192,6 +222,7 @@ const { carbonSavings, emissions, waterFootprint } = useEnvironmentalData();
 ```typescript
 const { showNotification, hideNotification, updateNotification } = useNotifications();
 ```
+
 ## Development & Deployment
 
 ### Local Development

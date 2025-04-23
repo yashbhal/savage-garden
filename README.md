@@ -7,9 +7,11 @@ Savage Garden is a plant monitoring system that connects with Particle Photon 2 
 - Track multiple plants with search functionality
 - Monitor sensor data (moisture, temperature, light, humidity, pressure)
 - Calculate carbon savings and environmental impact
-- Track emissions data and water footprint
-- Real-time plant care notifications
-- Responsive design for all device sizes
+- Track environmental footprint data and water usage
+- Automated plant care notifications every 30 seconds
+- Smooth page transitions and micro-interactions
+- Responsive design for all device sizes with mobile-optimized navigation
+- Skeleton loading states for improved user experience
 
 ## Tech Stack
 
@@ -17,6 +19,7 @@ Savage Garden is a plant monitoring system that connects with Particle Photon 2 
 - Tailwind CSS for styling
 - Chart.js for data visualization
 - Context API for state management
+- Framer Motion for animations and transitions
 - Particle Cloud API integration
 - API routes for backend functionality
 
@@ -25,15 +28,15 @@ Savage Garden is a plant monitoring system that connects with Particle Photon 2 
 - **components/** - Reusable UI components
   - **layout/** - Layout components like headers and footers
   - **plants/** - Plant-specific components
-  - **ui/** - Generic UI components
+  - **ui/** - Generic UI components (PageTransition, SkeletonLoader)
   - **notifications/** - Notification components
 - **lib/** - Application logic
-  - **context/** - React Context providers
+  - **context/** - React Context providers (PlantContext, NotificationContext)
   - **hooks/** - Custom hooks for data fetching
 - **pages/** - Next.js pages and API routes
   - **api/** - API routes for data operations
 - **public/** - Static assets
-- **styles/** - Global styles
+- **styles/** - Global styles and aesthetic enhancements
 - **types/** - TypeScript type definitions
 
 ## Getting Started
