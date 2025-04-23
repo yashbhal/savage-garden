@@ -1,0 +1,538 @@
+[
+  {
+    "Plant": "ANISE",
+    "Water_Saved": 8280
+  },
+  {
+    "Plant": "APPLE",
+    "Water_Saved": 622
+  },
+  {
+    "Plant": "APPLES",
+    "Water_Saved": 6847
+  },
+  {
+    "Plant": "APRICOT",
+    "Water_Saved": 1287
+  },
+  {
+    "Plant": "ARECA NUT",
+    "Water_Saved": 11165
+  },
+  {
+    "Plant": "ARTICHOKE",
+    "Water_Saved": 818
+  },
+  {
+    "Plant": "ASPARAGUS",
+    "Water_Saved": 2150
+  },
+  {
+    "Plant": "AVOCADO",
+    "Water_Saved": 1805
+  },
+  {
+    "Plant": "BADIAN",
+    "Water_Saved": 8280
+  },
+  {
+    "Plant": "BANANA",
+    "Water_Saved": 500
+  },
+  {
+    "Plant": "BARLEY",
+    "Water_Saved": 1423
+  },
+  {
+    "Plant": "BEAN",
+    "Water_Saved": 5053
+  },
+  {
+    "Plant": "BEAN (fresh)",
+    "Water_Saved": 516
+  },
+  {
+    "Plant": "BLACK TEA",
+    "Water_Saved": 8856
+  },
+  {
+    "Plant": "BLACKBERRY",
+    "Water_Saved": 413
+  },
+  {
+    "Plant": "BLUEBERRY",
+    "Water_Saved": 845
+  },
+  {
+    "Plant": "BRASSICAS",
+    "Water_Saved": 280
+  },
+  {
+    "Plant": "BROCCOLI",
+    "Water_Saved": 325
+  },
+  {
+    "Plant": "BRUSSEL SPROUT",
+    "Water_Saved": 285
+  },
+  {
+    "Plant": "CABAGGE",
+    "Water_Saved": 280
+  },
+  {
+    "Plant": "CASHEW APPLE",
+    "Water_Saved": 3793
+  },
+  {
+    "Plant": "CASHEW NUT",
+    "Water_Saved": 14218
+  },
+  {
+    "Plant": "CARDAMOM",
+    "Water_Saved": 34319
+  },
+  {
+    "Plant": "CARROT",
+    "Water_Saved": 195
+  },
+  {
+    "Plant": "CAULIFLOWER",
+    "Water_Saved": 285
+  },
+  {
+    "Plant": "CHERRY SOUR",
+    "Water_Saved": 1411
+  },
+  {
+    "Plant": "CHERRY SWEET",
+    "Water_Saved": 1604
+  },
+  {
+    "Plant": "CHESTNUT",
+    "Water_Saved": 2750
+  },
+  {
+    "Plant": "CHICKPEA",
+    "Water_Saved": 4177
+  },
+  {
+    "Plant": "CHILLY",
+    "Water_Saved": 7365
+  },
+  {
+    "Plant": "CHILLY FRESH",
+    "Water_Saved": 379
+  },
+  {
+    "Plant": "CINNAMON",
+    "Water_Saved": 15526
+  },
+  {
+    "Plant": "CITRUS",
+    "Water_Saved": 457
+  },
+  {
+    "Plant": "CLEMENTINE",
+    "Water_Saved": 748
+  },
+  {
+    "Plant": "CLOVE",
+    "Water_Saved": 61205
+  },
+  {
+    "Plant": "COCONUT",
+    "Water_Saved": 1971
+  },
+  {
+    "Plant": "COCONUTS",
+    "Water_Saved": 2093
+  },
+  {
+    "Plant": "COFFEE BEAN",
+    "Water_Saved": 19928
+  },
+  {
+    "Plant": "COFFEE GREEN",
+    "Water_Saved": 15897
+  },
+  {
+    "Plant": "CORIANDER",
+    "Water_Saved": 8280
+  },
+  {
+    "Plant": "COWPEA",
+    "Water_Saved": 6906
+  },
+  {
+    "Plant": "CRANBERRY",
+    "Water_Saved": 276
+  },
+  {
+    "Plant": "CUCUMBER",
+    "Water_Saved": 353
+  },
+  {
+    "Plant": "CURRANT",
+    "Water_Saved": 499
+  },
+  {
+    "Plant": "DATES",
+    "Water_Saved": 2840
+  },
+  {
+    "Plant": "EGGPLANT",
+    "Water_Saved": 362
+  },
+  {
+    "Plant": "FABA BEAN",
+    "Water_Saved": 2018
+  },
+  {
+    "Plant": "FENNEL SEEDS",
+    "Water_Saved": 8280
+  },
+  {
+    "Plant": "FIG",
+    "Water_Saved": 3350
+  },
+  {
+    "Plant": "GARLIC",
+    "Water_Saved": 589
+  },
+  {
+    "Plant": "GARLIC POWDER",
+    "Water_Saved": 2265
+  },
+  {
+    "Plant": "GINGER",
+    "Water_Saved": 1657
+  },
+  {
+    "Plant": "GOOSEBERRY",
+    "Water_Saved": 526
+  },
+  {
+    "Plant": "GRAPES",
+    "Water_Saved": 608
+  },
+  {
+    "Plant": "GREEN TEA",
+    "Water_Saved": 8856
+  },
+  {
+    "Plant": "GUAVA",
+    "Water_Saved": 1800
+  },
+  {
+    "Plant": "HAZELNUT SHELLED",
+    "Water_Saved": 10515
+  },
+  {
+    "Plant": "HAZELNUT WITH SHELL",
+    "Water_Saved": 5258
+  },
+  {
+    "Plant": "HEMPSEED",
+    "Water_Saved": 3685
+  },
+  {
+    "Plant": "HOP CONE",
+    "Water_Saved": 4065
+  },
+  {
+    "Plant": "HOP EXTRACT",
+    "Water_Saved": 16259
+  },
+  {
+    "Plant": "KIWI",
+    "Water_Saved": 514
+  },
+  {
+    "Plant": "KOLA NUT",
+    "Water_Saved": 23391
+  },
+  {
+    "Plant": "LEMON",
+    "Water_Saved": 642
+  },
+  {
+    "Plant": "LENTIL",
+    "Water_Saved": 5874
+  },
+  {
+    "Plant": "LETTUCE",
+    "Water_Saved": 237
+  },
+  {
+    "Plant": "LIME",
+    "Water_Saved": 642
+  },
+  {
+    "Plant": "LINSEED",
+    "Water_Saved": 5168
+  },
+  {
+    "Plant": "LONGABERRY",
+    "Water_Saved": 413
+  },
+  {
+    "Plant": "MACE",
+    "Water_Saved": 34319
+  },
+  {
+    "Plant": "MAIZE",
+    "Water_Saved": 1191
+  },
+  {
+    "Plant": "MAIZE GREEN",
+    "Water_Saved": 700
+  },
+  {
+    "Plant": "MANDARIN",
+    "Water_Saved": 748
+  },
+  {
+    "Plant": "MANGO",
+    "Water_Saved": 1855
+  },
+  {
+    "Plant": "MANGOSTEEN",
+    "Water_Saved": 1800
+  },
+  {
+    "Plant": "MANIOC",
+    "Water_Saved": 564
+  },
+  {
+    "Plant": "MILLET",
+    "Water_Saved": 4478
+  },
+  {
+    "Plant": "MIXED NUTS",
+    "Water_Saved": 9063
+  },
+  {
+    "Plant": "MULBERRY",
+    "Water_Saved": 413
+  },
+  {
+    "Plant": "MUSTARD SEED",
+    "Water_Saved": 2809
+  },
+  {
+    "Plant": "NUTMEG",
+    "Water_Saved": 34319
+  },
+  {
+    "Plant": "OAT",
+    "Water_Saved": 1788
+  },
+  {
+    "Plant": "OKRA",
+    "Water_Saved": 576
+  },
+  {
+    "Plant": "OLIVES*",
+    "Water_Saved": 3015
+  },
+  {
+    "Plant": "ONION",
+    "Water_Saved": 290
+  },
+  {
+    "Plant": "ORANGE",
+    "Water_Saved": 654
+  },
+  {
+    "Plant": "PALM NUT",
+    "Water_Saved": 2868
+  },
+  {
+    "Plant": "PAPAYA",
+    "Water_Saved": 460
+  },
+  {
+    "Plant": "PEA",
+    "Water_Saved": 1979
+  },
+  {
+    "Plant": "PEA (fresh)",
+    "Water_Saved": 595
+  },
+  {
+    "Plant": "PEACH",
+    "Water_Saved": 910
+  },
+  {
+    "Plant": "PEANUT",
+    "Water_Saved": 2782
+  },
+  {
+    "Plant": "PEAR",
+    "Water_Saved": 922
+  },
+  {
+    "Plant": "PEPPER",
+    "Water_Saved": 379
+  },
+  {
+    "Plant": "PEPPER (PIPER SPP.)",
+    "Water_Saved": 7611
+  },
+  {
+    "Plant": "PEPPERMINT",
+    "Water_Saved": 288
+  },
+  {
+    "Plant": "PIGEON PEA",
+    "Water_Saved": 5494
+  },
+  {
+    "Plant": "PINEAPPLE",
+    "Water_Saved": 255
+  },
+  {
+    "Plant": "PISTACHIO",
+    "Water_Saved": 11363
+  },
+  {
+    "Plant": "PLANTAIN",
+    "Water_Saved": 1602
+  },
+  {
+    "Plant": "PLUM",
+    "Water_Saved": 2180
+  },
+  {
+    "Plant": "POPPY SEED",
+    "Water_Saved": 2188
+  },
+  {
+    "Plant": "POTATO",
+    "Water_Saved": 554.8
+  },
+  {
+    "Plant": "PUMPKIN",
+    "Water_Saved": 400
+  },
+  {
+    "Plant": "RAISINS",
+    "Water_Saved": 2433
+  },
+  {
+    "Plant": "RAPESEED",
+    "Water_Saved": 2271
+  },
+  {
+    "Plant": "RASPBERRY",
+    "Water_Saved": 413
+  },
+  {
+    "Plant": "RICE",
+    "Water_Saved": 1597
+  },
+  {
+    "Plant": "RYE",
+    "Water_Saved": 1554
+  },
+  {
+    "Plant": "SAFFRON",
+    "Water_Saved": 731000
+  },
+  {
+    "Plant": "SESAM SEED",
+    "Water_Saved": 9371
+  },
+  {
+    "Plant": "SHALLOT",
+    "Water_Saved": 272
+  },
+  {
+    "Plant": "SORGHUM",
+    "Water_Saved": 3048
+  },
+  {
+    "Plant": "SOYBEAN",
+    "Water_Saved": 1816.4
+  },
+  {
+    "Plant": "SPINACH",
+    "Water_Saved": 292
+  },
+  {
+    "Plant": "SQUASH",
+    "Water_Saved": 336
+  },
+  {
+    "Plant": "STRAWBERRY",
+    "Water_Saved": 247.9
+  },
+  {
+    "Plant": "STRING BEAN",
+    "Water_Saved": 547
+  },
+  {
+    "Plant": "SUGAR BEET",
+    "Water_Saved": 132
+  },
+  {
+    "Plant": "SUGAR CANE",
+    "Water_Saved": 210
+  },
+  {
+    "Plant": "SUNFLOWER SEED",
+    "Water_Saved": 3366
+  },
+  {
+    "Plant": "SWEET POTATO",
+    "Water_Saved": 383
+  },
+  {
+    "Plant": "TANGERIN",
+    "Water_Saved": 748
+  },
+  {
+    "Plant": "TARO",
+    "Water_Saved": 606
+  },
+  {
+    "Plant": "TOMATO",
+    "Water_Saved": 41
+  },
+  {
+    "Plant": "TOMATO DRIED*",
+    "Water_Saved": 4276
+  },
+  {
+    "Plant": "TURNIP",
+    "Water_Saved": 195
+  },
+  {
+    "Plant": "VANILLA BEAN",
+    "Water_Saved": 126505
+  },
+  {
+    "Plant": "WALNUT SHELLED",
+    "Water_Saved": 9172.5
+  },
+  {
+    "Plant": "WALNUT WITH SHELL",
+    "Water_Saved": 4918
+  },
+  {
+    "Plant": "WATERMELON",
+    "Water_Saved": 185
+  },
+  {
+    "Plant": "WHEAT",
+    "Water_Saved": 1639
+  },
+  {
+    "Plant": "YAM",
+    "Water_Saved": 343
+  },
+  {
+    "Plant": "ZUCCHINI",
+    "Water_Saved": 336
+  }
+]
