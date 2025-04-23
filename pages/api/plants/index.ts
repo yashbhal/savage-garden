@@ -16,7 +16,7 @@ export const plants: Plant[] = [
     description:
       "Also known as the Swiss Cheese Plant, featuring large, heart-shaped leaves with distinctive splits and holes.",
     sensorId: "sensor-001",
-    carbonSavings: 120,
+    carbonSavings: 0,
   },
   {
     id: "2",
@@ -29,7 +29,7 @@ export const plants: Plant[] = [
     description:
       "An elegant plant with glossy leaves and white flowers, known for its air-purifying qualities.",
     sensorId: "sensor-002",
-    carbonSavings: 85,
+    carbonSavings: 0,
   },
   {
     id: "3",
@@ -41,7 +41,7 @@ export const plants: Plant[] = [
     lastWatered: "2023-05-08T18:00:00Z",
     description:
       "A hardy, drought-resistant succulent with tall, stiff leaves. Excellent for beginners.",
-    carbonSavings: 95,
+    carbonSavings: 0,
   },
   {
     id: "4",
@@ -53,7 +53,7 @@ export const plants: Plant[] = [
     lastWatered: "2023-05-08T18:00:00Z",
     description:
       "...",
-    carbonSavings: 95,
+    carbonSavings: 5,
   },
 ];
 
